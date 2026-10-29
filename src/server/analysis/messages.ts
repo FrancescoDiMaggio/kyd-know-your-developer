@@ -75,6 +75,7 @@ export function collectConversations(userId: string, from: string, to: string): 
 
 export interface ScanContext {
     conversations?: Record<string, Conversation>
+    promptTimes: Record<string, string[]>
     messages: number
     senderTotals: Record<string, number>
     tools: Record<string, { ok: number; ko: number; ms: number }>
@@ -113,6 +114,7 @@ export interface ScanContext {
 
 export function newScanContext(): ScanContext {
     return {
+        promptTimes: {},
         messages: 0,
         senderTotals: {},
         tools: {},
@@ -185,6 +187,7 @@ function scanUserMessage(ctx: ScanContext, cid: string, created: string, o: any,
     if (isHidden) {
         ctx.pq.hidden++
     } else {
+        ;(ctx.promptTimes[cid] ||= []).push(created)
         inc(ctx.byDay, created.substring(0, 10))
         inc(ctx.byHour, created.substring(11, 13))
         ctx.pq.total++

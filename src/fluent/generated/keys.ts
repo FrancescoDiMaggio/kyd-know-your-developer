@@ -5,6 +5,14 @@ declare global {
         namespace Internal {
             interface Keys extends KeysRegistry {
                 explicit: {
+                    '(%1 certain)': {
+                        table: 'sys_ui_message'
+                        id: '8b0a729204d94a7dbb9e84e794ad5fd3'
+                    }
+                    '(max %1)': {
+                        table: 'sys_ui_message'
+                        id: 'e90b4ee1e2b64fbb850b5ce03a10f0af'
+                    }
                     '(no name)': {
                         table: 'sys_ui_message'
                         id: '2e76247f401b4a429bab3b51e375c8de'
@@ -261,14 +269,26 @@ declare global {
                         table: 'sys_ui_message'
                         id: '179a0cd5083d43509235bd222fe54cee'
                     }
+                    '%1 errors · %2 aborted · %3 still open': {
+                        table: 'sys_ui_message'
+                        id: 'd6fdce6aa86843919e9ae6059dcddcbf'
+                    }
                     '%1 failures out of %2': {
                         table: 'sys_ui_message'
                         id: 'd45e747e644342efa0a3370247da2548'
                         deleted: true
                     }
+                    '%1 in total': {
+                        table: 'sys_ui_message'
+                        id: '85f8b8979d02408cb95020f68f440f1c'
+                    }
                     '%1 in total, showing the first %2': {
                         table: 'sys_ui_message'
                         id: '1aff5fdaa8ba4f27bceda5d364946e7c'
+                    }
+                    '%1 install · %2 manual': {
+                        table: 'sys_ui_message'
+                        id: '1da9d9be569a4c6490102260f334fa28'
                     }
                     '%1 key artifacts': {
                         table: 'sys_ui_message'
@@ -278,6 +298,10 @@ declare global {
                         table: 'sys_ui_message'
                         id: 'e4a3d0b5bb8e40239e3293111c85cafe'
                         deleted: true
+                    }
+                    '%1 metadata · %2 data': {
+                        table: 'sys_ui_message'
+                        id: '97b90db8cb9848418919d71257ec8c0f'
                     }
                     '%1 min': {
                         table: 'sys_ui_message'
@@ -347,6 +371,14 @@ declare global {
                         table: 'sys_ui_message'
                         id: 'badfb2236fe04e84bc540192f4ff1db4'
                     }
+                    '%1 requests, %2 successful': {
+                        table: 'sys_ui_message'
+                        id: '0e3fd68e049f43ce9c195912ee548e39'
+                    }
+                    '%1 reverted': {
+                        table: 'sys_ui_message'
+                        id: '79b22ba929364c28a6a86ed20d70b583'
+                    }
                     '%1 root conversations · %2 including sub-agents · %3 messages': {
                         table: 'sys_ui_message'
                         id: '596967f51c08406486dcc999029c91f5'
@@ -358,6 +390,10 @@ declare global {
                     '%1 runs': {
                         table: 'sys_ui_message'
                         id: '64c60e9a64794dfdb7581cbad81a9285'
+                    }
+                    '%1 story points': {
+                        table: 'sys_ui_message'
+                        id: '68873e6f49c94edab1925a1cc1fa859c'
                     }
                     '%1 streams reconstructed from the conversations': {
                         table: 'sys_ui_message'
@@ -380,6 +416,10 @@ declare global {
                         table: 'sys_ui_message'
                         id: '1cd7595045154a2ca7323f2ad1edcb84'
                     }
+                    '%1 write · %2 read-only': {
+                        table: 'sys_ui_message'
+                        id: 'a4e223c8a7b641ceb9a6ce38162a40b1'
+                    }
                     '%1 writes on %2 distinct files': {
                         table: 'sys_ui_message'
                         id: 'f6ac7216f6ad4ea3b362865efb5a4523'
@@ -397,9 +437,22 @@ declare global {
                         table: 'sys_ui_message'
                         id: '4bd4e739963c41d693df8d086a2d5d2f'
                     }
+                    '≈ %1–%2 days, Build Agent artifacts only': {
+                        table: 'sys_ui_message'
+                        id: 'a5748ae47dd347cca51be58d3e79c624'
+                    }
                     'A single pass over every message: prompts per day and hour, tool calls with success and duration, build and install outcomes, background script intents, source files written or deleted, sub-agent delegations and prompt quality signals (ultra-short prompts, screenshots, links, ticket references, duplicates, friction words).': {
                         table: 'sys_ui_message'
                         id: 'e70b3a28ac204cb4b89219d42db4f896'
+                        deleted: true
+                    }
+                    'A single pass over every message: prompts per day and hour, tool calls with success and duration, build and install outcomes, background script intents, source files written or deleted, sub-agent delegations and prompt quality signals (ultra-short prompts, screenshots, links, ticket references, technical names, duplicates, friction words).': {
+                        table: 'sys_ui_message'
+                        id: '7a4f32a0ced445b6a3c364fb4b32fc8f'
+                    }
+                    Acceleration: {
+                        table: 'sys_ui_message'
+                        id: 'ce0d96c10ad24be2aac4f98a9fd9a62e'
                     }
                     'Account status, creation, last login, direct and inherited roles and group memberships.': {
                         table: 'sys_ui_message'
@@ -408,6 +461,10 @@ declare global {
                     Action: {
                         table: 'sys_ui_message'
                         id: '5a171749131943b090164832a03dac3f'
+                    }
+                    'action steps': {
+                        table: 'sys_ui_message'
+                        id: 'e6ef8dc3616045c084cdf8584548b0bd'
                     }
                     Actions: {
                         table: 'sys_ui_message'
@@ -441,11 +498,19 @@ declare global {
                     'Agent time': {
                         table: 'sys_ui_message'
                         id: 'a310763b43c24a5db007e6fc2098ff2f'
-                        deleted: true
+                        deleted: false
+                    }
+                    'All attributions': {
+                        table: 'sys_ui_message'
+                        id: 'dc2cc9c8fd4e47b9a10d9aba214782ce'
                     }
                     'All classes': {
                         table: 'sys_ui_message'
                         id: '194ae3d3eec2443288f10bc9294ce76b'
+                    }
+                    'All the numbers refer to the selected period, from the start date included to the end date excluded, in UTC.': {
+                        table: 'sys_ui_message'
+                        id: '4111e8655ccc4dafbc634866c54ed01b'
                     }
                     'Analysed developers': {
                         table: 'sys_ui_message'
@@ -519,9 +584,21 @@ declare global {
                         table: 'sys_ui_message'
                         id: 'f26399920ab84a5f9b270b1e00fb31ce'
                     }
+                    Artifact: {
+                        table: 'sys_ui_message'
+                        id: 'f5ad6950d0894965b4c9cfe0b0bbe29a'
+                    }
+                    'Artifact class': {
+                        table: 'sys_ui_message'
+                        id: '67097b94f287435b9b50b9ad51b316a6'
+                    }
                     Artifacts: {
                         table: 'sys_ui_message'
                         id: 'a4fded6feba441c38bf805607b94de58'
+                    }
+                    'artifacts traced to checkpoints, scripts or installs': {
+                        table: 'sys_ui_message'
+                        id: '4e5b39d50fe54c6285b6144c96fed2e5'
                     }
                     'ATF tests created': {
                         table: 'sys_ui_message'
@@ -531,9 +608,25 @@ declare global {
                         table: 'sys_ui_message'
                         id: '356f63bc4f9f4f46aa7e7e7bb8a0ab55'
                     }
+                    'Attributed with certainty': {
+                        table: 'sys_ui_message'
+                        id: 'f313957017234881b894e69d9887942d'
+                    }
+                    Attribution: {
+                        table: 'sys_ui_message'
+                        id: '32122eff3f6c45d0893b44a5a707ebf9'
+                    }
+                    'Attribution of the artifacts': {
+                        table: 'sys_ui_message'
+                        id: '6ce982c487954e8aa654e18a5da95d05'
+                    }
                     'Audit fields and views added to platform tables (sc_req_item, sc_cat_item, task...)': {
                         table: 'sys_ui_message'
                         id: '3a5de5abc2454749a0851bccb51b583a'
+                    }
+                    Automation: {
+                        table: 'sys_ui_message'
+                        id: '0c616f8658994c2dae5c2f7d32fe787e'
                     }
                     'Average characters per prompt': {
                         table: 'sys_ui_message'
@@ -546,6 +639,14 @@ declare global {
                     'background scripts': {
                         table: 'sys_ui_message'
                         id: 'd3f6e34df2e144f8809af85ea84690f4'
+                    }
+                    'Background scripts': {
+                        table: 'sys_ui_message'
+                        id: '829d52be2ef44780949dd8e787072faf'
+                    }
+                    'Base hours': {
+                        table: 'sys_ui_message'
+                        id: '89fe3a1e449b4a93a12fd3aa2dd75a6f'
                     }
                     Behaviour: {
                         table: 'sys_ui_message'
@@ -563,9 +664,25 @@ declare global {
                         table: 'sys_module'
                         id: '8d22f75a793f44d4b6445561cf950409'
                     }
+                    'Build Agent checkpoint': {
+                        table: 'sys_ui_message'
+                        id: '188e996c7ced44c0a02e6416c070d574'
+                    }
                     'Build Agent conversations': {
                         table: 'sys_ui_message'
                         id: '5af1e7a47cac457d92c6614433da0e8a'
+                    }
+                    'Build Agent install': {
+                        table: 'sys_ui_message'
+                        id: '87e5ac7f3b6b4304aa82d98cb3294c30'
+                    }
+                    'Build Agent script': {
+                        table: 'sys_ui_message'
+                        id: '79885dd2598a41a0a71301ec85d751de'
+                    }
+                    'Build Agent scripts changed %1 records on data tables': {
+                        table: 'sys_ui_message'
+                        id: '2d5d158e814c4e1d97952027e286d811'
                     }
                     'Build Agent via %1 in %2 of %3 conversations': {
                         table: 'sys_ui_message'
@@ -578,6 +695,22 @@ declare global {
                     Cancel: {
                         table: 'sys_ui_message'
                         id: '9672374e8f0f4027a8cd99896d678075'
+                    }
+                    'catalog variables': {
+                        table: 'sys_ui_message'
+                        id: 'a302028f54b84358822dd15c4a92039e'
+                    }
+                    Category: {
+                        table: 'sys_ui_message'
+                        id: '0b5f575a4f1941a0af1073d81ebbfe4c'
+                    }
+                    'Checkpoint: in the working set of a Build Agent turn. Script: inserted by a Build Agent background script. Install: in an update set of a Build Agent install. Same time window: created while a conversation was open.': {
+                        table: 'sys_ui_message'
+                        id: '281d42f46bf548be8ea2a99545ae4f04'
+                    }
+                    Checkpoints: {
+                        table: 'sys_ui_message'
+                        id: '7927293cd62c4df68e8f3b7e5537e326'
                     }
                     Class: {
                         table: 'sys_ui_message'
@@ -603,6 +736,14 @@ declare global {
                         table: 'sys_ui_message'
                         id: 'dc9d81b52bbb403aa3bcb6d7bff32877'
                     }
+                    'Combines the governance indicators, the key facts, the goals and prompts with the output of the two previous skills. Returns risk observations on a defined severity scale (high, medium, low, monitor) with an action, a 1 to 5 maturity level on seven defined dimensions and the operational recommendations.': {
+                        table: 'sys_ui_message'
+                        id: '22e6ccad0028431a8dabd145a07d063f'
+                    }
+                    'Compares the estimated manual effort of the artifacts built with Build Agent with the time spent in Build Agent sessions, per conversation and in total, and shows the cost of the speed-up: write and read-only background scripts, records changed, checkpoints, requests not completed.': {
+                        table: 'sys_ui_message'
+                        id: '33954571a67d4b8aa0987b554d616438'
+                    }
                     Complete: {
                         table: 'sys_ui_message'
                         id: '215c6719cd524eaabbae137a0d8c22d3'
@@ -626,6 +767,10 @@ declare global {
                     'Condition detected: to verify': {
                         table: 'sys_ui_message'
                         id: '3dd4c616ecbd4b0c8d89621e11b9b3e2'
+                    }
+                    Configuration: {
+                        table: 'sys_ui_message'
+                        id: '868e6b8a809b452e8ab239018752ce71'
                     }
                     Confirm: {
                         table: 'sys_ui_message'
@@ -654,6 +799,11 @@ declare global {
                     'Conversations created by the developer in the period, plus their sub-agent child conversations.': {
                         table: 'sys_ui_message'
                         id: '195048e775da49e08b29c7b561b8d852'
+                        deleted: true
+                    }
+                    'Conversations created by the developer in the period, plus their sub-agent child conversations. The first prompt of each conversation is kept as its goal, because titles are often generic.': {
+                        table: 'sys_ui_message'
+                        id: '87e2003435764656a3483c3e8f5eed53'
                     }
                     'Conversations in Global scope': {
                         table: 'sys_ui_message'
@@ -693,9 +843,33 @@ declare global {
                         table: 'sys_ui_message'
                         id: 'a08129a27c72438892d6a16d5ff21911'
                     }
+                    custom: {
+                        table: 'sys_ui_message'
+                        id: 'cee9646e2098476abf6e69c5b48e422b'
+                    }
                     Custom: {
                         table: 'sys_ui_message'
                         id: '0979ac27e2be46789123cb77243c3ed5'
+                    }
+                    'Customer stories linked to the work': {
+                        table: 'sys_ui_message'
+                        id: '677555e7b09f4ae6b9ed905dbcaf8dfa'
+                    }
+                    data: {
+                        table: 'sys_ui_message'
+                        id: '9060d67295c64aaab0855e105b20a3e5'
+                    }
+                    'Data collection': {
+                        table: 'sys_ui_message'
+                        id: '072b7797affd4b8ca557dec733c62deb'
+                    }
+                    'Data model': {
+                        table: 'sys_ui_message'
+                        id: 'e7feca14c0fa454b951a285432d3c3b5'
+                    }
+                    default: {
+                        table: 'sys_ui_message'
+                        id: '2d91fc7f57ba477982fd1bfdd876aae6'
                     }
                     'Delete / Move': {
                         table: 'sys_ui_message'
@@ -705,6 +879,10 @@ declare global {
                         table: 'sys_ui_message'
                         id: '12a74fa0e5e04b17911f6b5d0ff4ee9d'
                     }
+                    'Delivered with about %1 h of Build Agent sessions.': {
+                        table: 'sys_ui_message'
+                        id: '87ee3ecbf7a94951a032d3b612294d95'
+                    }
                     'Delivery Outcomes': {
                         table: 'sys_ui_message'
                         id: '64edf4cf4f764aaba45ff3d68a862d8f'
@@ -712,6 +890,10 @@ declare global {
                     Developer: {
                         table: 'sys_ui_message'
                         id: 'c6122264999d46d2b1a734ef40a39741'
+                    }
+                    'Developer card': {
+                        table: 'sys_ui_message'
+                        id: '7ef7ff35a68f4e4084dff58bfb360ac5'
                     }
                     'Developer card: %1': {
                         table: 'sys_ui_message'
@@ -753,9 +935,21 @@ declare global {
                         table: 'sys_ui_message'
                         id: '46abf183ffb04c15be7d310890a327b1'
                     }
+                    'Each functional artifact is attributed to Build Agent from the most certain source available: the working set of a Build Agent checkpoint, the records inserted by its background scripts (rollback context), the update sets of its installs, or the time window of a conversation. Its manual effort is estimated with configurable weights: base hours plus size (script lines, fields, flow steps, variables) times hours per unit. The time in Build Agent sessions comes from the prompt timestamps; linked customer stories are read with the statistics of their team.': {
+                        table: 'sys_ui_message'
+                        id: '5eb0b095905840ed97ecff07d533ee86'
+                    }
                     'Effective roles': {
                         table: 'sys_ui_message'
                         id: '38c194af11d542c2b14d747218885e9b'
+                    }
+                    'Effort estimate': {
+                        table: 'sys_ui_message'
+                        id: 'c58c02f852ed4622906dc0991ec0cd40'
+                    }
+                    'Effort model': {
+                        table: 'sys_ui_message'
+                        id: '9141cc664989412b9196ba656d1b8deb'
                     }
                     'Elements touched: conversations, update sets, artifacts (grouped by class) and tables': {
                         table: 'sys_ui_message'
@@ -765,13 +959,49 @@ declare global {
                         table: 'sys_ui_message'
                         id: '4a1e08768a08489a8726616b98ab34b5'
                     }
+                    'Estimated artifacts': {
+                        table: 'sys_ui_message'
+                        id: 'f4c57e8ddb824f749069ef979325674f'
+                    }
+                    'Estimated effort': {
+                        table: 'sys_ui_message'
+                        id: '7df3ecaee687425eb0d9747bb7a56668'
+                    }
+                    'estimated effort / session time': {
+                        table: 'sys_ui_message'
+                        id: '09f3ffa0475c4f3b940e6537bd8141d7'
+                    }
+                    'Estimated effort and session time per conversation': {
+                        table: 'sys_ui_message'
+                        id: '5cdf89ef3e0840e1a3448d85e6c67c0a'
+                    }
                     'estimated from run_script calls: script requests are not readable from the app scope': {
                         table: 'sys_ui_message'
                         id: '91b25faedac94c71b5bb20d0dd9faf62'
                     }
+                    'Estimated manual effort': {
+                        table: 'sys_ui_message'
+                        id: '8c4489a8d050427796f9e16584737abd'
+                    }
+                    'Estimated manual effort (h)': {
+                        table: 'sys_ui_message'
+                        id: 'af8490c577c648ff8a45eb80fb0bb30c'
+                    }
+                    'Estimated manual effort %1–%2 h, delivered in about %3 h of Build Agent sessions: ≈ %4× faster.': {
+                        table: 'sys_ui_message'
+                        id: '72ec4f70edc4440487fb1295f3647d64'
+                    }
+                    'Estimating the manual effort': {
+                        table: 'sys_ui_message'
+                        id: '6fbfd0f081a7460d9b2864e8947790bc'
+                    }
                     'Excluding the var__m_* technical fields': {
                         table: 'sys_ui_message'
                         id: 'ef6fb29f2ead4737a7acb855bbfcfd6f'
+                    }
+                    'Excluding versions, caches and indexes': {
+                        table: 'sys_ui_message'
+                        id: '1426d5137b1a4726b433ed63e97598c9'
                     }
                     'extends {0}': {
                         table: 'sys_ui_message'
@@ -806,6 +1036,10 @@ declare global {
                         table: 'sys_ui_message'
                         id: '9e82779b07dc4339aa6c657556bebbd1'
                     }
+                    'Filter by attribution': {
+                        table: 'sys_ui_message'
+                        id: 'c8b0304b31394941b35dfb1c25541c9c'
+                    }
                     'Filter by class': {
                         table: 'sys_ui_message'
                         id: '54dd1f29af8a43c482ba459e00eefbfd'
@@ -821,6 +1055,10 @@ declare global {
                     Fit: {
                         table: 'sys_ui_message'
                         id: 'b8f50d69b38a4c13a7e7bc18eac137b8'
+                    }
+                    'flow steps': {
+                        table: 'sys_ui_message'
+                        id: '77e5745826a544b9b0dc5611653f1be4'
                     }
                     'For less frequent developers': {
                         table: 'sys_ui_message'
@@ -872,6 +1110,10 @@ declare global {
                         table: 'sys_ui_message'
                         id: '7c3e1476fa0e437aa0214be735fbe0f5'
                     }
+                    'Good to know': {
+                        table: 'sys_ui_message'
+                        id: '015b5a657fad4155af4d4a389d08ed89'
+                    }
                     Governance: {
                         table: 'sys_ui_message'
                         id: 'f7d87021c4ba4973923c41bad2a1f8cd'
@@ -900,9 +1142,29 @@ declare global {
                         table: 'sys_ui_message'
                         id: 'b9c211b705664428b6a3b73ed849f91e'
                     }
+                    Hours: {
+                        table: 'sys_ui_message'
+                        id: 'b873e6c99a7e4eb3af8991b3ebd1a1c7'
+                    }
+                    'Hours = base hours + size × hours per unit. Range %1–%2 of the estimate, %3 hours per day. The general parameters are the system properties x_giss2_kyd.effort.* (hours_per_day, range_low, range_high, session_gap_minutes, session_lead_minutes).': {
+                        table: 'sys_ui_message'
+                        id: 'b7429c49c97b4d20b879ae9c57e521ea'
+                    }
+                    'Hours per unit': {
+                        table: 'sys_ui_message'
+                        id: 'ab4d07dcb7bc46649909ab25b343673b'
+                    }
+                    'Hours; the estimate is the central value of the range': {
+                        table: 'sys_ui_message'
+                        id: '77182752e934458fa000365caf476937'
+                    }
                     'How a KYD analysis works': {
                         table: 'sys_ui_message'
                         id: '74c2b381877744f28c0fa2407c546a1b'
+                    }
+                    'How each artifact is linked to Build Agent': {
+                        table: 'sys_ui_message'
+                        id: '472d73c596b64fe490dc16dcf6f7d718'
                     }
                     'How the analysis works': {
                         table: 'sys_ui_message'
@@ -911,6 +1173,10 @@ declare global {
                     Identity: {
                         table: 'sys_ui_message'
                         id: '1a680a4c0472465794cac566527c3e62'
+                    }
+                    'If a skill fails, the analysis stays valid without that part and the Report shows the error.': {
+                        table: 'sys_ui_message'
+                        id: 'f6cb73ca8459467fbf711f28c95b0c66'
                     }
                     'Implicit delegation of design decisions to the agent: risk of rework.': {
                         table: 'sys_ui_message'
@@ -928,6 +1194,10 @@ declare global {
                         table: 'sys_ui_message'
                         id: '8d9639a4c0294ac484de883cd6a81dbf'
                     }
+                    Integration: {
+                        table: 'sys_ui_message'
+                        id: 'ce51dd76a22243bcb265c10641ef6290'
+                    }
                     Intent: {
                         table: 'sys_ui_message'
                         id: 'df8a5cb33c12446392c7d6f624264cf5'
@@ -944,6 +1214,10 @@ declare global {
                         table: 'sys_ui_message'
                         id: '7bb76b1639fd45bab017158f7e85b00b'
                     }
+                    'Key findings and positive signals': {
+                        table: 'sys_ui_message'
+                        id: 'a915d53fefe7457b99544ae7df5b66a7'
+                    }
                     'Know Your Developer': {
                         table: 'sys_ui_message'
                         id: '6eced587d4514a8a89c5eb3f84cc5f56'
@@ -956,9 +1230,14 @@ declare global {
                         table: 'sys_ui_message'
                         id: '9c881e48fbc4443882560d4d0072af13'
                     }
+                    'KYD only reads platform data: the only record it writes is the KYD Analysis itself. The analysis has two parts: the data collection and the reading of the results.': {
+                        table: 'sys_ui_message'
+                        id: 'bfac905f22374a4e8524850b782f117a'
+                    }
                     'KYD reads only platform data: it does not change anything on the instance. All the numbers refer to the selected period, from the start date included to the end date excluded, in UTC.': {
                         table: 'sys_ui_message'
                         id: 'd185c7e9ad394056af00198fa9462bfe'
+                        deleted: true
                     }
                     kyd_behaviour_profile_analysis_data_input: {
                         table: 'sys_one_extend_definition_attribute'
@@ -1108,6 +1387,26 @@ declare global {
                         table: 'sys_security_acl'
                         id: '51aad07874dd477889405e0ac53ea954'
                     }
+                    'kyd-effort-weight-create': {
+                        table: 'sys_security_acl'
+                        id: 'fc8e666569cd4c7a8cc42dcff091b1ac'
+                    }
+                    'kyd-effort-weight-delete': {
+                        table: 'sys_security_acl'
+                        id: '6de2bf8718ce4c0a84a549368251fbbc'
+                    }
+                    'kyd-effort-weight-load-defaults': {
+                        table: 'sys_ui_action'
+                        id: 'a939ab7fba19445c843e8b1415cb9704'
+                    }
+                    'kyd-effort-weight-read': {
+                        table: 'sys_security_acl'
+                        id: '8032b53115324a7485783bed20d2d7d6'
+                    }
+                    'kyd-effort-weight-write': {
+                        table: 'sys_security_acl'
+                        id: '778df1195c9b4386a7740a583d5408e0'
+                    }
                     'kyd-menu': {
                         table: 'sys_app_application'
                         id: '2382c3d9cd6f4950810310be290dc796'
@@ -1116,6 +1415,10 @@ declare global {
                         table: 'sys_app_module'
                         id: 'cdefd4e9f00b4267818c361a1604728f'
                     }
+                    'kyd-module-effort-weights': {
+                        table: 'sys_app_module'
+                        id: 'e00030d861704d6eaeb808abb48dc021'
+                    }
                     'kyd-module-home': {
                         table: 'sys_app_module'
                         id: '6c47a0a0f0b24b89924cdfed301af168'
@@ -1123,6 +1426,10 @@ declare global {
                     'kyd-queue-analysis': {
                         table: 'sys_script'
                         id: '7e2ff620cfb74b138bf2b77709911909'
+                    }
+                    'kyd-read-sn_build_agent_checkpoint': {
+                        table: 'sys_scope_privilege'
+                        id: '0117a4f0c66747668516cd46312a436b'
                     }
                     'kyd-read-sn_build_agent_conversation': {
                         table: 'sys_scope_privilege'
@@ -1135,6 +1442,10 @@ declare global {
                     'kyd-read-sn_build_agent_script_request': {
                         table: 'sys_scope_privilege'
                         id: 'ea45f1fb06714d4cb5dac2c481113170'
+                    }
+                    'kyd-read-sn_build_agent_task_telemetry': {
+                        table: 'sys_scope_privilege'
+                        id: '6dac29bf1fe440f38d1aa3137fe4b224'
                     }
                     'kyd-rest-analysis': {
                         table: 'sys_ws_operation'
@@ -1201,6 +1512,10 @@ declare global {
                         table: 'sys_ui_message'
                         id: '2336eb0f51fe4553817ae939c2b2e118'
                     }
+                    Logic: {
+                        table: 'sys_ui_message'
+                        id: 'b25a2ace6b6947089e418652e5b0e8c5'
+                    }
                     'Long sessions or lost context: consider an upfront design review and splitting the conversations.': {
                         table: 'sys_ui_message'
                         id: 'f0d66503c9254c38b57ce0561ef8cbba'
@@ -1246,6 +1561,10 @@ declare global {
                         table: 'sys_ui_message'
                         id: '00c17cab57fb4c3084ef1b3e065ae937'
                     }
+                    metadata: {
+                        table: 'sys_ui_message'
+                        id: 'f1f8c4a1297d4e14815846d12337726f'
+                    }
                     'Metadata and tables': {
                         table: 'sys_ui_message'
                         id: 'a1e8082960a34b0688dd448267a382e8'
@@ -1253,6 +1572,11 @@ declare global {
                     'Metadata records created by the developer in the period, split into functional classes and technical noise (plugin, documentation, snapshots, dictionary); new tables with their fields and records; dictionary changes per table.': {
                         table: 'sys_ui_message'
                         id: '518bf6442e4a4c238bd87db76b04ae16'
+                        deleted: true
+                    }
+                    'Metadata records created by the developer in the period, split into functional classes and technical noise (plugins, documentation, snapshots, dictionary); the functional artifacts by name; new tables with their fields and records; dictionary changes per table.': {
+                        table: 'sys_ui_message'
+                        id: 'bb9e682b0c3146908a927aebfae9fdd9'
                     }
                     Minutes: {
                         table: 'sys_ui_message'
@@ -1319,6 +1643,14 @@ declare global {
                         table: 'sys_ui_message'
                         id: 'f465842c5f7c4e79b6a16838c4758181'
                     }
+                    'no story points': {
+                        table: 'sys_ui_message'
+                        id: 'a26c984ab2194a6c88a8b14370a15862'
+                    }
+                    none: {
+                        table: 'sys_ui_message'
+                        id: '6b33a45134d247389740182a6c4cb23f'
+                    }
                     None: {
                         table: 'sys_ui_message'
                         id: '7db80e98b26b46868c49354f995745ff'
@@ -1331,13 +1663,30 @@ declare global {
                         table: 'sys_ui_message'
                         id: '2b03218bbd454006a1c268d2a9a0c11e'
                     }
+                    Notification: {
+                        table: 'sys_ui_message'
+                        id: '33026ecca4cf43bcad7b84392fe67e22'
+                    }
                     'Now Assist insights': {
                         table: 'sys_ui_message'
                         id: 'd8fdf66ada754d95a58342a64c51ca90'
+                        deleted: true
                     }
                     'Now Assist insights are not available for this analysis': {
                         table: 'sys_ui_message'
                         id: 'f959d84be5364b6185205c30dbe1f388'
+                    }
+                    'Now Assist skill: Behaviour Profile': {
+                        table: 'sys_ui_message'
+                        id: '39715ecb98b14eefb7ad126fe5a27347'
+                    }
+                    'Now Assist skill: Delivery Outcomes': {
+                        table: 'sys_ui_message'
+                        id: 'bd470c933d0a402daf15902a29b5f298'
+                    }
+                    'Now Assist skill: Risk and Maturity': {
+                        table: 'sys_ui_message'
+                        id: '26a623d2681f44dcb69049267db8d410'
                     }
                     'np$ scratch tables': {
                         table: 'sys_ui_message'
@@ -1350,6 +1699,10 @@ declare global {
                     OK: {
                         table: 'sys_ui_message'
                         id: '76ddb5624bba4fbda4d8b97594408131'
+                    }
+                    'One row per conversation with artifacts or prompts': {
+                        table: 'sys_ui_message'
+                        id: '3c09966f35c54ca49e3601071d41427c'
                     }
                     'Open the analysis': {
                         table: 'sys_ui_message'
@@ -1372,6 +1725,10 @@ declare global {
                         table: 'sys_ui_message'
                         id: 'faab28c404a94016a3360b712317fa50'
                     }
+                    Other: {
+                        table: 'sys_ui_message'
+                        id: 'ec6c0e6550dd4954b090c8f0795222e4'
+                    }
                     Outcome: {
                         table: 'sys_ui_message'
                         id: '2998e780ca61492598fc58de52910700'
@@ -1379,6 +1736,10 @@ declare global {
                     'Outcomes of the requests': {
                         table: 'sys_ui_message'
                         id: '84e8954ad7fc4f099bcb29d9736189cc'
+                    }
+                    'Outside Build Agent': {
+                        table: 'sys_ui_message'
+                        id: '2110f77ef8eb4712b305c79af301ce97'
                     }
                     'Overall success': {
                         table: 'sys_ui_message'
@@ -1395,6 +1756,10 @@ declare global {
                     Partial: {
                         table: 'sys_ui_message'
                         id: '548f94efc2c34450ba589dc20e9bb76b'
+                    }
+                    'pauses up to %1 min between prompts': {
+                        table: 'sys_ui_message'
+                        id: 'b59a49453c82444a9b4f7260f1513576'
                     }
                     'peak {0} ({1})': {
                         table: 'sys_ui_message'
@@ -1443,6 +1808,10 @@ declare global {
                         table: 'sys_ui_message'
                         id: 'f574c59ec2ff4097a02f739e2bf2d374'
                     }
+                    'Positive signals: tool success ≥ %1, prompts with evidence (screenshots, links, tickets) ≥ %2, technical table and field names ≥ %3, ATF tests created, sub-agent delegations.': {
+                        table: 'sys_ui_message'
+                        id: 'aeeaa7d172154c19859b9a308eb8727a'
+                    }
                     'Previous analyses': {
                         table: 'sys_ui_message'
                         id: '4e2ae43670b74126a41c46e8450cfb26'
@@ -1458,6 +1827,10 @@ declare global {
                     'Prompt quality': {
                         table: 'sys_ui_message'
                         id: '5d26a641b35143b689b01c9bbe994b56'
+                    }
+                    'Prompt texts are truncated to %1 characters and conversation goals to %2 characters.': {
+                        table: 'sys_ui_message'
+                        id: 'e679d52ea0b84138af618572f465dc61'
                     }
                     Prompts: {
                         table: 'sys_ui_message'
@@ -1483,6 +1856,18 @@ declare global {
                         table: 'sys_ui_message'
                         id: 'f9168f3c556246799dc43fedb9aff429'
                     }
+                    'Reading of the results': {
+                        table: 'sys_ui_message'
+                        id: 'f926e80d8259486c8a37e5a616ca882c'
+                    }
+                    'Reads the behaviour metrics, the prompt quality indicators and the prompt history. Returns a profile classification with summary, strengths and concerns, each supported by numbers, dates or verbatim quotes.': {
+                        table: 'sys_ui_message'
+                        id: '1419de2b0744454ba9e697b0c12416ad'
+                    }
+                    'Reads the conversation goals and prompts, tool outcomes, build and install results, script intents, created metadata and update sets. Returns the work streams (with prompts, components and result, grouping the advisory conversations), the outcome of each goal and the main causes of failure.': {
+                        table: 'sys_ui_message'
+                        id: 'f7be987c66324da28eab513a0b919537'
+                    }
                     'Real prompts': {
                         table: 'sys_ui_message'
                         id: 'e41d1d6a2e2c46d6b3c5670931cc00c8'
@@ -1490,6 +1875,10 @@ declare global {
                     Records: {
                         table: 'sys_ui_message'
                         id: 'f49f4069c9aa49aa98f3e9dc5649a353'
+                    }
+                    'Records changed by scripts': {
+                        table: 'sys_ui_message'
+                        id: '7bb2c5dfcc814a9c82db1b886fe81b37'
                     }
                     'Refresh analysis': {
                         table: 'sys_ui_message'
@@ -1508,6 +1897,10 @@ declare global {
                         table: 'sys_ui_message'
                         id: '67138fb50e2b44d5a15a30bd42fd690d'
                     }
+                    'Refresh the analysis to compute it.': {
+                        table: 'sys_ui_message'
+                        id: '3a14bb84c32d4263a78a55e903b58681'
+                    }
                     'Relationship graph': {
                         table: 'sys_ui_message'
                         id: '21822b857d11456cb71bfe38c5f7e3bb'
@@ -1524,9 +1917,17 @@ declare global {
                         table: 'sys_ui_message'
                         id: 'a550c762c509485fbc5919c6eec949b3'
                     }
+                    'Requests not completed': {
+                        table: 'sys_ui_message'
+                        id: '91330155b6a848e3a493c9dd1b781b36'
+                    }
                     Responses: {
                         table: 'sys_ui_message'
                         id: '637594bc447f4aae84543c327e031354'
+                    }
+                    'Rework and side effects': {
+                        table: 'sys_ui_message'
+                        id: 'f315351b440b4375b5d8d5de6890c35e'
                     }
                     'Risk and Maturity': {
                         table: 'sys_ui_message'
@@ -1536,6 +1937,10 @@ declare global {
                         table: 'sys_ui_message'
                         id: 'eb6438c7843d4f2997f35f82e2251b5d'
                     }
+                    'rollback not readable from the app scope': {
+                        table: 'sys_ui_message'
+                        id: '3d4c55ad2d174769a2867f1443264f3e'
+                    }
                     'Rolling window': {
                         table: 'sys_ui_message'
                         id: '055dc43d426e43e789a1d92c9d2f775f'
@@ -1543,6 +1948,10 @@ declare global {
                     Running: {
                         table: 'sys_ui_message'
                         id: 'b903c24cb21944c9a4d00ce251877120'
+                    }
+                    'Same time window (probable)': {
+                        table: 'sys_ui_message'
+                        id: 'd1a47a546eb74e71b80b66fd780c38c4'
                     }
                     'Scanning messages': {
                         table: 'sys_ui_message'
@@ -1552,6 +1961,10 @@ declare global {
                         table: 'sys_ui_message'
                         id: '16483a9b685349998f867a7ffa5470ae'
                     }
+                    'script lines': {
+                        table: 'sys_ui_message'
+                        id: '6061e367f48e4008bc36165a5ae4bac4'
+                    }
                     'Search by name or user name': {
                         table: 'sys_ui_message'
                         id: 'f6427fe7538b4428b4884713820423c9'
@@ -1559,6 +1972,10 @@ declare global {
                     'Search developer': {
                         table: 'sys_ui_message'
                         id: '235dceed887c4eb5bca7a9bdc91810ec'
+                    }
+                    Security: {
+                        table: 'sys_ui_message'
+                        id: '518ec5c8c5b54b51ab474c8654f3760e'
                     }
                     'Select a node to see its details and relations. Scroll to zoom, drag to move.': {
                         table: 'sys_ui_message'
@@ -1568,9 +1985,21 @@ declare global {
                         table: 'sys_ui_message'
                         id: 'd180c77c532a47af8cd8cd0c04883ab5'
                     }
+                    'Service Catalog': {
+                        table: 'sys_ui_message'
+                        id: 'bc4d3ac7a51348568ee4ba3d960dd500'
+                    }
                     'Session instability or impatience: it creates duplicated work.': {
                         table: 'sys_ui_message'
                         id: '6bc41c3309b44f08ade0eb368388e86f'
+                    }
+                    'Session time': {
+                        table: 'sys_ui_message'
+                        id: 'ee21770fe22f4cda81473de890481988'
+                    }
+                    'Session time counts the pauses between prompts up to %1 minutes and adds %2 minutes at the start of each session; work done outside the chat is not counted.': {
+                        table: 'sys_ui_message'
+                        id: 'bd24b7ce66034e45aeecbc7b58695015'
                     }
                     Severity: {
                         table: 'sys_ui_message'
@@ -1584,6 +2013,18 @@ declare global {
                     'showing the %1 most recent, refine the search': {
                         table: 'sys_ui_message'
                         id: '3f2fcade1c8a480190c66d5d60a2a428'
+                    }
+                    Size: {
+                        table: 'sys_ui_message'
+                        id: '5afccc6f60e04fe3814d86e9f3091785'
+                    }
+                    'Size driver': {
+                        table: 'sys_ui_message'
+                        id: 'af6ab6d8e55c42a38be14ddbc6afae0e'
+                    }
+                    Source: {
+                        table: 'sys_ui_message'
+                        id: '008b5cf437d34dae860e2c217644a013'
                     }
                     'Source files touched': {
                         table: 'sys_ui_message'
@@ -1625,6 +2066,10 @@ declare global {
                         table: 'sys_module'
                         id: '211fcfd0d5aa4419a15938adabb213f3'
                     }
+                    src_server_analysis_windows_ts: {
+                        table: 'sys_module'
+                        id: '8f1d8bd2dad743b2bfb2238cac5d1a43'
+                    }
                     'src_server_automation_queue-analysis_ts': {
                         table: 'sys_module'
                         id: 'b464f5acf1ee481983bbca02495bec31'
@@ -1632,6 +2077,30 @@ declare global {
                     'src_server_automation_run-analysis-action_ts': {
                         table: 'sys_module'
                         id: '7898607074c84571ad5f63db62a7b624'
+                    }
+                    src_server_effort_acceleration_ts: {
+                        table: 'sys_module'
+                        id: '542b52631b1c486b9fd6d3693cfb51e5'
+                    }
+                    src_server_effort_attribution_ts: {
+                        table: 'sys_module'
+                        id: '301ed54d6084410e82f66426466ea045'
+                    }
+                    src_server_effort_drivers_ts: {
+                        table: 'sys_module'
+                        id: 'e6b91b2db8054dc088becc80c9c6abd4'
+                    }
+                    src_server_effort_seed_ts: {
+                        table: 'sys_module'
+                        id: '0e29829fcfe649a4aaf4a3778ae27b31'
+                    }
+                    src_server_effort_stories_ts: {
+                        table: 'sys_module'
+                        id: '7ed1cef15e5245119c11332794c46b30'
+                    }
+                    src_server_effort_weights_ts: {
+                        table: 'sys_module'
+                        id: '7c0e45084f9d4bab9418de58a427112a'
                     }
                     src_server_insights_insights_ts: {
                         table: 'sys_module'
@@ -1669,6 +2138,14 @@ declare global {
                         table: 'sys_ui_message'
                         id: 'e3ea2e33b5a543259dbf98b355f7f954'
                     }
+                    Stories: {
+                        table: 'sys_ui_message'
+                        id: '4222ea3380bf4195b44201559110a318'
+                    }
+                    'Story numbers cited in prompts, goals, script intents and update set names': {
+                        table: 'sys_ui_message'
+                        id: '6bd6fbee4ab743919018aa45864ee4b4'
+                    }
                     Strengths: {
                         table: 'sys_ui_message'
                         id: 'c682819c2ff3494a91823cca0381d492'
@@ -1697,6 +2174,18 @@ declare global {
                         table: 'sys_ui_message'
                         id: '4e4a253a2f6941eb9d3d52c112fb7ea7'
                     }
+                    'table fields': {
+                        table: 'sys_ui_message'
+                        id: '89876444dfbc491ca25e49e1c39cfabc'
+                    }
+                    'Tables changed by Build Agent scripts': {
+                        table: 'sys_ui_message'
+                        id: '4554bdcc593b4cd9beb63dfed89cab1d'
+                    }
+                    'Team context over the last 12 months: %1 stories, median %2, 90th percentile %3, max %4, %5 on the Fibonacci scale.': {
+                        table: 'sys_ui_message'
+                        id: '009015847a4646a89d698356e6e64913'
+                    }
                     'Technical noise': {
                         table: 'sys_ui_message'
                         id: '9b0470e7c1e54b8f81583e6449453c82'
@@ -1722,9 +2211,25 @@ declare global {
                         table: 'sys_ui_message'
                         id: '18b474a6790d47c1873848615b23f98f'
                     }
+                    'The effort estimate is not available for this analysis': {
+                        table: 'sys_ui_message'
+                        id: '9b789a7e9d6e46c78b4843406170cc61'
+                    }
                     'The end date is before the start date': {
                         table: 'sys_ui_message'
                         id: '7035b35d13434af7827f1152fb727977'
+                    }
+                    'The first part of the Report is computed from the data with explicit thresholds, without AI: anomalous in-progress update sets, np$* scratch tables, dictionary changes on platform tables, no ATF tests, at least %1 of installs failed, critical tools (failures ≥ successes), more than %2 background scripts, work in Global scope, ultra-short prompts ≥ %3, duplicates ≥ %4, friction ≥ %5.': {
+                        table: 'sys_ui_message'
+                        id: '86f78cbf25ab40e0b824c49647b37c4c'
+                    }
+                    'The headline, the indicators and the source note on the Overview are computed from the data. The role and the work stream cards come from the Delivery Outcomes skill.': {
+                        table: 'sys_ui_message'
+                        id: 'c0f893a42ca94e6f9983fa6e5f66493f'
+                    }
+                    'The manual effort is an estimate from configurable weights, not validated against actuals. Story points are a currency of each team: they are shown in their team context and never converted to hours.': {
+                        table: 'sys_ui_message'
+                        id: '574d87dc89114d09b4f694c59128ec99'
                     }
                     'The page refreshes by itself when it completes.': {
                         table: 'sys_ui_message'
@@ -1739,9 +2244,22 @@ declare global {
                         table: 'sys_ui_message'
                         id: 'a411bb33c01b4e218dda32430e4cd831'
                     }
+                    'The skills run on Azure OpenAI GPT-5.4 and write in the preferred language of the person who requested the analysis.': {
+                        table: 'sys_ui_message'
+                        id: 'df9f5b9838d94fae9bf9b31c5a51b156'
+                    }
+                    'The texts generated by Now Assist are AI-generated content: verify them against the data before acting on them.': {
+                        table: 'sys_ui_message'
+                        id: '85b19019fd7c4bb7a4b7e25f5a44c95e'
+                    }
                     'The wizard creates a KYD Analysis record in the queued state. A business rule fires the x_giss2_kyd.analysis.requested event and a script action runs the engine in the background, so the page is never blocked.': {
                         table: 'sys_ui_message'
                         id: 'bda63a6adcc8440d908d0d20bd49fa41'
+                        deleted: true
+                    }
+                    'The wizard creates a KYD Analysis record in the queued state. A business rule fires the x_giss2_kyd.analysis.requested event and a script action runs the engine in the background, so the page is never blocked. The current stage is shown in the list and in the detail page.': {
+                        table: 'sys_ui_message'
+                        id: 'd1797377cf214a5cae6ccdb565d414ab'
                     }
                     'The work streams appear here when the Now Assist insights are available for this analysis.': {
                         table: 'sys_ui_message'
@@ -1759,6 +2277,15 @@ declare global {
                     'Three Now Assist skills (Behaviour Profile, Delivery Outcomes, Risk and Maturity) turn the computed data into a written reading, in the language of the person who requested the analysis. If a skill fails the analysis stays valid, without that part.': {
                         table: 'sys_ui_message'
                         id: 'cd3098a938a94e55a6a535e53cfc3591'
+                        deleted: true
+                    }
+                    'Time in Build Agent sessions': {
+                        table: 'sys_ui_message'
+                        id: '4865fa3a7d7e4bf781e3c22c5534f008'
+                    }
+                    'Time in Build Agent sessions (h)': {
+                        table: 'sys_ui_message'
+                        id: 'ff4c590058fd497daa0d595976d3a41d'
                     }
                     'Time window': {
                         table: 'sys_ui_message'
@@ -1854,9 +2381,14 @@ declare global {
                         table: 'sys_ui_message'
                         id: 'f22fab944e1e4a3e8120e93b378b298d'
                     }
+                    'Update sets created or updated by the developer in the period, with the number of updates. In-progress update sets above %1 updates are flagged as anomalous.': {
+                        table: 'sys_ui_message'
+                        id: '686fe1e711ec4b4985b90416be2fe64c'
+                    }
                     'Update sets created or updated by the developer in the period, with the number of updates. In-progress update sets above 500 updates are flagged as anomalous.': {
                         table: 'sys_ui_message'
                         id: '0e9d32bbb6014b868144a15f1bf16552'
+                        deleted: true
                     }
                     'Update sets involved': {
                         table: 'sys_ui_message'
@@ -1865,6 +2397,10 @@ declare global {
                     Updates: {
                         table: 'sys_ui_message'
                         id: 'd49bb6c5635b44f0bec214e08fb6a901'
+                    }
+                    'User interface': {
+                        table: 'sys_ui_message'
+                        id: 'f64d28aea60b4ff89d59a8b617c2d5ff'
                     }
                     'user prompts': {
                         table: 'sys_ui_message'
@@ -1885,6 +2421,14 @@ declare global {
                     'Very detailed (>1500 characters)': {
                         table: 'sys_ui_message'
                         id: 'a317047ecefa475c94be5dabbb2a77aa'
+                    }
+                    'Weights used by this analysis. KYD admins change them in KYD - Know Your Developer > Effort weights.': {
+                        table: 'sys_ui_message'
+                        id: 'f016b49cfa2f4659ad3950d77c4246c8'
+                    }
+                    'What the speed-up cost': {
+                        table: 'sys_ui_message'
+                        id: 'f4701157f7f44c32a96f2bfa05065a74'
                     }
                     'Who to analyse': {
                         table: 'sys_ui_message'
@@ -1914,6 +2458,10 @@ declare global {
                         table: 'sys_ui_message'
                         id: '30bae0732b6f4e6ca72df12b57608598'
                     }
+                    'Work packages': {
+                        table: 'sys_ui_message'
+                        id: '6221d65c789e45f8a0877c0ccd0b0bda'
+                    }
                     'Work streams': {
                         table: 'sys_ui_message'
                         id: '023e14f6287549be812cdf1a15707aee'
@@ -1928,6 +2476,17 @@ declare global {
                     }
                 }
                 composite: [
+                    {
+                        table: 'sys_choice'
+                        id: '00b4de3817364f3b9ad78526427b414a'
+                        key: {
+                            name: 'x_giss2_kyd_effort_weight'
+                            element: 'category'
+                            value: 'automation'
+                            language: 'en'
+                            dependent_value: 'NULL'
+                        }
+                    },
                     {
                         table: 'sys_ui_element'
                         id: '0134dd0ab7064a558729ebf68cc36b8f'
@@ -1962,11 +2521,44 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_choice'
+                        id: '03a2eaf80aed46a096033b211a5d61b7'
+                        key: {
+                            name: 'x_giss2_kyd_effort_weight'
+                            element: 'driver'
+                            value: 'action_steps'
+                            language: 'en'
+                            dependent_value: 'NULL'
+                        }
+                    },
+                    {
                         table: 'sys_dictionary'
                         id: '04db814da6aa4d198fa6fbe58745bf1c'
                         key: {
                             name: 'x_giss2_kyd_analysis'
                             element: 'period_from'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: '06f2d9c6f5514c2fae31b7f7125e204a'
+                        key: {
+                            sys_ui_section: {
+                                id: 'fa9c4f54e94a4f8d9da91cb24ceba558'
+                                key: {
+                                    name: 'x_giss2_kyd_effort_weight'
+                                    caption: 'Weight'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'active'
+                            position: '4'
                         }
                     },
                     {
@@ -2012,6 +2604,17 @@ declare global {
                             }
                             element: 'conversations'
                             position: '1'
+                        }
+                    },
+                    {
+                        table: 'sys_choice'
+                        id: '083dfc2691214e2e95902dd30400b84f'
+                        key: {
+                            name: 'x_giss2_kyd_effort_weight'
+                            element: 'category'
+                            value: 'integration'
+                            language: 'en'
+                            dependent_value: 'NULL'
                         }
                     },
                     {
@@ -2159,6 +2762,22 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_choice_set'
+                        id: '1277af447439400483fdfb99469c3440'
+                        key: {
+                            name: 'x_giss2_kyd_effort_weight'
+                            element: 'driver'
+                        }
+                    },
+                    {
+                        table: 'sys_choice_set'
+                        id: '12e93fba72d4476bb3d5f51126662f13'
+                        key: {
+                            name: 'x_giss2_kyd_effort_weight'
+                            element: 'category'
+                        }
+                    },
+                    {
                         table: 'sys_ui_element'
                         id: '147e0ac830554145adeb8ed37377d54b'
                         key: {
@@ -2178,6 +2797,20 @@ declare global {
                             }
                             element: 'tool_success_rate'
                             position: '5'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_form'
+                        id: '162586ebf6834295b881ad31bb523bb9'
+                        key: {
+                            name: 'x_giss2_kyd_effort_weight'
+                            view: {
+                                id: 'Default view'
+                                key: {
+                                    name: 'NULL'
+                                }
+                            }
+                            sys_domain: 'global'
                         }
                     },
                     {
@@ -2222,6 +2855,36 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_dictionary'
+                        id: '1b22ec8e08b944cdb4089e74a2d59cd3'
+                        key: {
+                            name: 'x_giss2_kyd_effort_weight'
+                            element: 'artifact_class'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: '1d7349f086f147309df4c469fbeb58c8'
+                        key: {
+                            sys_ui_section: {
+                                id: 'fa9c4f54e94a4f8d9da91cb24ceba558'
+                                key: {
+                                    name: 'x_giss2_kyd_effort_weight'
+                                    caption: 'Weight'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'notes'
+                            position: '11'
+                        }
+                    },
+                    {
                         table: 'sys_ux_lib_asset'
                         id: '1dde9f1cb5d5400386954dc48d5d59f8'
                         key: {
@@ -2234,6 +2897,36 @@ declare global {
                         deleted: true
                         key: {
                             name: 'x_snc_kyd_fdm_kyd.do - BYOUI Files'
+                        }
+                    },
+                    {
+                        table: 'sys_dictionary'
+                        id: '1f5c469ec2ab4ce58b0cf73a5fece81b'
+                        key: {
+                            name: 'x_giss2_kyd_effort_weight'
+                            element: 'NULL'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: '207ae576fd6e460b88ee78d0d0f355fc'
+                        key: {
+                            sys_ui_section: {
+                                id: 'fa9c4f54e94a4f8d9da91cb24ceba558'
+                                key: {
+                                    name: 'x_giss2_kyd_effort_weight'
+                                    caption: 'Weight'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'category'
+                            position: '3'
                         }
                     },
                     {
@@ -2250,6 +2943,19 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_security_acl_role'
+                        id: '22eb3fcc5ec347eeab94d3decbdfef5e'
+                        key: {
+                            sys_security_acl: '778df1195c9b4386a7740a583d5408e0'
+                            sys_user_role: {
+                                id: '8dbf9ba175a049c89f1efa5bdd45d6fa'
+                                key: {
+                                    name: 'x_giss2_kyd.admin'
+                                }
+                            }
+                        }
+                    },
+                    {
                         table: 'sys_gen_ai_strategy_mapping'
                         id: '23d1857ce41d4be49be96e1af0910cf0'
                         key: {
@@ -2259,6 +2965,19 @@ declare global {
                                 key: {
                                     feature_name: 'KYD Behaviour Profile'
                                     document: '1b3cddb8b5a24a2fba8c3e5210cc80a2'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        table: 'sys_security_acl_role'
+                        id: '2425b32530ab48d295f74c9c5d5d2839'
+                        key: {
+                            sys_security_acl: '6de2bf8718ce4c0a84a549368251fbbc'
+                            sys_user_role: {
+                                id: '8dbf9ba175a049c89f1efa5bdd45d6fa'
+                                key: {
+                                    name: 'x_giss2_kyd.admin'
                                 }
                             }
                         }
@@ -2279,12 +2998,98 @@ declare global {
                         }
                     },
                     {
+                        table: 'ua_table_licensing_config'
+                        id: '26f6d5d7ee2c4798b02e42364151149c'
+                        key: {
+                            name: 'x_giss2_kyd_effort_weight'
+                        }
+                    },
+                    {
+                        table: 'sys_choice'
+                        id: '2748565d0a69462ea2a20d51954e3260'
+                        key: {
+                            name: 'x_giss2_kyd_effort_weight'
+                            element: 'driver'
+                            value: 'flow_steps'
+                            language: 'en'
+                            dependent_value: 'NULL'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_form_section'
+                        id: '288f3ca4d0b94f748ec42a9bb2551053'
+                        key: {
+                            sys_ui_form: {
+                                id: '162586ebf6834295b881ad31bb523bb9'
+                                key: {
+                                    name: 'x_giss2_kyd_effort_weight'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            sys_ui_section: {
+                                id: 'fa9c4f54e94a4f8d9da91cb24ceba558'
+                                key: {
+                                    name: 'x_giss2_kyd_effort_weight'
+                                    caption: 'Weight'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        table: 'sys_documentation'
+                        id: '295d1aada4de4b95958fd129aefa4c91'
+                        key: {
+                            name: 'x_giss2_kyd_effort_weight'
+                            element: 'hours_per_unit'
+                            language: 'en'
+                        }
+                    },
+                    {
+                        table: 'sys_dictionary'
+                        id: '2a01edc0d2f944169bbab26318d4af6d'
+                        key: {
+                            name: 'x_giss2_kyd_effort_weight'
+                            element: 'hours_per_unit'
+                        }
+                    },
+                    {
                         table: 'sn_glider_source_artifact_m2m'
                         id: '2b206b9712b74463a79e4f39b394dba3'
                         deleted: true
                         key: {
                             application_file: '9f667946792e43dc8ba4ef0d6b0d9f63'
                             source_artifact: '1de7d99a677b40698877fb76021d8af2'
+                        }
+                    },
+                    {
+                        table: 'sys_documentation'
+                        id: '2c35c8440e684bd88d6af67183ac6693'
+                        key: {
+                            name: 'x_giss2_kyd_effort_weight'
+                            element: 'driver'
+                            language: 'en'
+                        }
+                    },
+                    {
+                        table: 'sys_documentation'
+                        id: '2cf23e7dea09451ba5efaca9eebeb918'
+                        key: {
+                            name: 'x_giss2_kyd_effort_weight'
+                            element: 'NULL'
+                            language: 'en'
                         }
                     },
                     {
@@ -2349,6 +3154,23 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_documentation'
+                        id: '30a22dfba184467a8dc8f3d797608ea9'
+                        key: {
+                            name: 'x_giss2_kyd_effort_weight'
+                            element: 'active'
+                            language: 'en'
+                        }
+                    },
+                    {
+                        table: 'sys_dictionary'
+                        id: '315d58fb073f4923a3bac99ef21f3da1'
+                        key: {
+                            name: 'x_giss2_kyd_effort_weight'
+                            element: 'notes'
+                        }
+                    },
+                    {
                         table: 'sys_ux_lib_asset'
                         id: '31c0a74b49ca4f61ae7e4069d36b9e25'
                         key: {
@@ -2384,6 +3206,14 @@ declare global {
                         key: {
                             category: 'x_giss2_kyd_analysis'
                             prefix: 'KYD'
+                        }
+                    },
+                    {
+                        table: 'sys_dictionary'
+                        id: '3431b2079f0c4a4786d1da48d463bf2e'
+                        key: {
+                            name: 'x_giss2_kyd_effort_weight'
+                            element: 'label'
                         }
                     },
                     {
@@ -2434,6 +3264,15 @@ declare global {
                                     name: 'x_giss2_kyd.user'
                                 }
                             }
+                        }
+                    },
+                    {
+                        table: 'sys_documentation'
+                        id: '3720a0c0d0ad4e1095e1c30a17850c6b'
+                        key: {
+                            name: 'x_giss2_kyd_effort_weight'
+                            element: 'notes'
+                            language: 'en'
                         }
                     },
                     {
@@ -2580,6 +3419,17 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_choice'
+                        id: '424659de932e49c5ac01e01d9920ccf4'
+                        key: {
+                            name: 'x_giss2_kyd_effort_weight'
+                            element: 'driver'
+                            value: 'fields'
+                            language: 'en'
+                            dependent_value: 'NULL'
+                        }
+                    },
+                    {
                         table: 'sys_ui_element'
                         id: '46b554fbb29c4327a9a26a360120bd57'
                         key: {
@@ -2682,6 +3532,28 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_choice'
+                        id: '49f80667b13c490493e5960a60435c3a'
+                        key: {
+                            name: 'x_giss2_kyd_effort_weight'
+                            element: 'driver'
+                            value: 'none'
+                            language: 'en'
+                            dependent_value: 'NULL'
+                        }
+                    },
+                    {
+                        table: 'sys_choice'
+                        id: '4a3dbd9a50bc4cefaea70166492eff09'
+                        key: {
+                            name: 'x_giss2_kyd_analysis'
+                            element: 'stage'
+                            value: 'effort'
+                            language: 'en'
+                            dependent_value: 'NULL'
+                        }
+                    },
+                    {
                         table: 'sys_ui_page'
                         id: '4a52b6534d4c4b07a812f4a3ccd65d81'
                         deleted: true
@@ -2696,6 +3568,28 @@ declare global {
                         key: {
                             application_file: '8ef11e0033c44f208bf464d21bc27564'
                             source_artifact: 'feb6d066b344412fb03e3b54c80e15b7'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: '4ce8433717a84fd0883dffb13ed4c3b6'
+                        key: {
+                            sys_ui_section: {
+                                id: 'fa9c4f54e94a4f8d9da91cb24ceba558'
+                                key: {
+                                    name: 'x_giss2_kyd_effort_weight'
+                                    caption: 'Weight'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'base_hours'
+                            position: '6'
                         }
                     },
                     {
@@ -2765,6 +3659,17 @@ declare global {
                         key: {
                             capability: '1b3cddb8b5a24a2fba8c3e5210cc80a2'
                             api: 'a55c1c6f530221106b38ddeeff7b12b1'
+                        }
+                    },
+                    {
+                        table: 'sys_choice'
+                        id: '5452f786eb604a86b60f29795d558469'
+                        key: {
+                            name: 'x_giss2_kyd_effort_weight'
+                            element: 'category'
+                            value: 'configuration'
+                            language: 'en'
+                            dependent_value: 'NULL'
                         }
                     },
                     {
@@ -2861,6 +3766,13 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_db_object'
+                        id: '5c27fffb7f094f3c88af154cc27b8ec5'
+                        key: {
+                            name: 'x_giss2_kyd_effort_weight'
+                        }
+                    },
+                    {
                         table: 'sn_glider_source_artifact_m2m'
                         id: '5d90a964d8114825a28516c3b88d9db7'
                         deleted: true
@@ -2921,6 +3833,28 @@ declare global {
                         key: {
                             name: 'x_giss2_kyd_analysis'
                             element: 'started_on'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: '61c7be9612e6466894fd79bf7a1ae25d'
+                        key: {
+                            sys_ui_section: {
+                                id: 'fa9c4f54e94a4f8d9da91cb24ceba558'
+                                key: {
+                                    name: 'x_giss2_kyd_effort_weight'
+                                    caption: 'Weight'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'hours_per_unit'
+                            position: '8'
                         }
                     },
                     {
@@ -3037,6 +3971,36 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_ui_element'
+                        id: '710e40772f7046f9a164e8bbac2525ba'
+                        key: {
+                            sys_ui_section: {
+                                id: 'fa9c4f54e94a4f8d9da91cb24ceba558'
+                                key: {
+                                    name: 'x_giss2_kyd_effort_weight'
+                                    caption: 'Weight'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: '.end_split'
+                            position: '10'
+                        }
+                    },
+                    {
+                        table: 'sys_index'
+                        id: '7262075538594dd4be23cf1ee0fdd3f5'
+                        key: {
+                            logical_table_name: 'x_giss2_kyd_effort_weight'
+                            col_name_string: 'artifact_class'
+                        }
+                    },
+                    {
                         table: 'sys_choice'
                         id: '748b6c890cd34f4d8504d6dd6b169181'
                         key: {
@@ -3131,6 +4095,28 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_ui_element'
+                        id: '84d066c6961040c58b39fa52355aef3b'
+                        key: {
+                            sys_ui_section: {
+                                id: 'fa9c4f54e94a4f8d9da91cb24ceba558'
+                                key: {
+                                    name: 'x_giss2_kyd_effort_weight'
+                                    caption: 'Weight'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: '.split'
+                            position: '5'
+                        }
+                    },
+                    {
                         table: 'sys_choice'
                         id: '85b9d695879a47b9b65ed4a002064564'
                         key: {
@@ -3170,6 +4156,14 @@ declare global {
                             name: 'x_giss2_kyd_analysis'
                             element: 'started_on'
                             language: 'en'
+                        }
+                    },
+                    {
+                        table: 'sys_dictionary'
+                        id: '88c7f1e2c75144958246d9221367e164'
+                        key: {
+                            name: 'x_giss2_kyd_effort_weight'
+                            element: 'max_units'
                         }
                     },
                     {
@@ -3288,10 +4282,37 @@ declare global {
                     },
                     {
                         table: 'sys_documentation'
+                        id: '9020185125754cf1a9112cb0395fa09e'
+                        key: {
+                            name: 'x_giss2_kyd_effort_weight'
+                            element: 'label'
+                            language: 'en'
+                        }
+                    },
+                    {
+                        table: 'sys_documentation'
                         id: '90f66883cdd142dba9f7bba97c7c3511'
                         key: {
                             name: 'x_giss2_kyd_analysis'
                             element: 'conversations'
+                            language: 'en'
+                        }
+                    },
+                    {
+                        table: 'sys_documentation'
+                        id: '91716ac451a44558b1f2f5a64918f25c'
+                        key: {
+                            name: 'x_giss2_kyd_effort_weight'
+                            element: 'category'
+                            language: 'en'
+                        }
+                    },
+                    {
+                        table: 'sys_documentation'
+                        id: '94cedae02d8e4bed9c4e34199ce952f3'
+                        key: {
+                            name: 'x_giss2_kyd_effort_weight'
+                            element: 'artifact_class'
                             language: 'en'
                         }
                     },
@@ -3309,6 +4330,17 @@ declare global {
                             name: 'x_giss2_kyd_analysis'
                             element: 'state'
                             value: 'queued'
+                            language: 'en'
+                            dependent_value: 'NULL'
+                        }
+                    },
+                    {
+                        table: 'sys_choice'
+                        id: '98bad408dfbc46289d6168a10d0743a9'
+                        key: {
+                            name: 'x_giss2_kyd_effort_weight'
+                            element: 'category'
+                            value: 'catalog'
                             language: 'en'
                             dependent_value: 'NULL'
                         }
@@ -3364,6 +4396,15 @@ declare global {
                         key: {
                             name: 'x_giss2_kyd_analysis'
                             element: 'NULL'
+                            language: 'en'
+                        }
+                    },
+                    {
+                        table: 'sys_documentation'
+                        id: '9ce1b36d09fd45c49a1199bc18451c5e'
+                        key: {
+                            name: 'x_giss2_kyd_effort_weight'
+                            element: 'base_hours'
                             language: 'en'
                         }
                     },
@@ -3436,6 +4477,19 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_security_acl_role'
+                        id: 'a38bcfff8c5c4fa898c932af3682ea06'
+                        key: {
+                            sys_security_acl: 'fc8e666569cd4c7a8cc42dcff091b1ac'
+                            sys_user_role: {
+                                id: '8dbf9ba175a049c89f1efa5bdd45d6fa'
+                                key: {
+                                    name: 'x_giss2_kyd.admin'
+                                }
+                            }
+                        }
+                    },
+                    {
                         table: 'sys_ui_element'
                         id: 'a50c9c18412f4466b8980fc44ce01e21'
                         key: {
@@ -3505,6 +4559,60 @@ declare global {
                             name: 'x_giss2_kyd_analysis'
                             element: 'stage'
                             value: 'conversations'
+                            language: 'en'
+                            dependent_value: 'NULL'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: 'a79cec8fcbfc41ea8488ada62e2eef34'
+                        key: {
+                            sys_ui_section: {
+                                id: 'fa9c4f54e94a4f8d9da91cb24ceba558'
+                                key: {
+                                    name: 'x_giss2_kyd_effort_weight'
+                                    caption: 'Weight'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'max_units'
+                            position: '9'
+                        }
+                    },
+                    {
+                        table: 'sys_dictionary'
+                        id: 'a7f75ab15c394866b89e938ab1f46f28'
+                        key: {
+                            name: 'x_giss2_kyd_effort_weight'
+                            element: 'driver'
+                        }
+                    },
+                    {
+                        table: 'sys_security_acl_role'
+                        id: 'a84421efe2fa41d789dea3aaa6eee93e'
+                        key: {
+                            sys_security_acl: '8032b53115324a7485783bed20d2d7d6'
+                            sys_user_role: {
+                                id: '9a6c5b71d5ba4ec4805ee5a21a61e1f1'
+                                key: {
+                                    name: 'x_giss2_kyd.user'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        table: 'sys_choice'
+                        id: 'a876aa16cecb435883938869a1b04249'
+                        key: {
+                            name: 'x_giss2_kyd_effort_weight'
+                            element: 'category'
+                            value: 'notification'
                             language: 'en'
                             dependent_value: 'NULL'
                         }
@@ -3599,6 +4707,37 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_choice'
+                        id: 'b744875729c84dd18e53f57e71c83e38'
+                        key: {
+                            name: 'x_giss2_kyd_effort_weight'
+                            element: 'category'
+                            value: 'security'
+                            language: 'en'
+                            dependent_value: 'NULL'
+                        }
+                    },
+                    {
+                        table: 'sys_choice'
+                        id: 'b7f25947ede741c19deb7d43d83f6501'
+                        key: {
+                            name: 'x_giss2_kyd_effort_weight'
+                            element: 'category'
+                            value: 'other'
+                            language: 'en'
+                            dependent_value: 'NULL'
+                        }
+                    },
+                    {
+                        table: 'sys_documentation'
+                        id: 'ba3edebca1d54d3497971469a2f1b38b'
+                        key: {
+                            name: 'x_giss2_kyd_effort_weight'
+                            element: 'max_units'
+                            language: 'en'
+                        }
+                    },
+                    {
                         table: 'sys_documentation'
                         id: 'bb5f5783f5bf4f21b95d994483071784'
                         key: {
@@ -3644,6 +4783,14 @@ declare global {
                                     skill_id: '1b3cddb8b5a24a2fba8c3e5210cc80a2'
                                 }
                             }
+                        }
+                    },
+                    {
+                        table: 'sys_dictionary'
+                        id: 'be300b21519748d2ac6038bbc162ddfe'
+                        key: {
+                            name: 'x_giss2_kyd_effort_weight'
+                            element: 'base_hours'
                         }
                     },
                     {
@@ -3711,6 +4858,61 @@ declare global {
                         id: 'c7473327a6d845eebe47d14ecad03c14'
                         key: {
                             name: 'x_giss2_kyd_analysis'
+                        }
+                    },
+                    {
+                        table: 'sys_choice'
+                        id: 'c76f553c87914d1493c99e9f96d73567'
+                        key: {
+                            name: 'x_giss2_kyd_effort_weight'
+                            element: 'category'
+                            value: 'logic'
+                            language: 'en'
+                            dependent_value: 'NULL'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: 'c79d376d3ede4f32a98a2b4be235075b'
+                        key: {
+                            sys_ui_section: {
+                                id: 'fa9c4f54e94a4f8d9da91cb24ceba558'
+                                key: {
+                                    name: 'x_giss2_kyd_effort_weight'
+                                    caption: 'Weight'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: '.begin_split'
+                            position: '0'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: 'cd2cb36025134ffab7d102f9c95fa573'
+                        key: {
+                            sys_ui_section: {
+                                id: 'fa9c4f54e94a4f8d9da91cb24ceba558'
+                                key: {
+                                    name: 'x_giss2_kyd_effort_weight'
+                                    caption: 'Weight'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'driver'
+                            position: '7'
                         }
                     },
                     {
@@ -3806,6 +5008,17 @@ declare global {
                     },
                     {
                         table: 'sys_choice'
+                        id: 'dd2753c2f410461388978ba5c5eef724'
+                        key: {
+                            name: 'x_giss2_kyd_effort_weight'
+                            element: 'category'
+                            value: 'data_model'
+                            language: 'en'
+                            dependent_value: 'NULL'
+                        }
+                    },
+                    {
+                        table: 'sys_choice'
                         id: 'ddd00fa535c74e65a57fc56afda1f42d'
                         key: {
                             name: 'x_giss2_kyd_analysis'
@@ -3835,6 +5048,39 @@ declare global {
                                 }
                             }
                             capability: '3fbbff97a91d42198cacedf9b55bdc1f'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_element'
+                        id: 'e03c7457c6b74d0e8d6471b4e4785782'
+                        key: {
+                            sys_ui_section: {
+                                id: 'fa9c4f54e94a4f8d9da91cb24ceba558'
+                                key: {
+                                    name: 'x_giss2_kyd_effort_weight'
+                                    caption: 'Weight'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'artifact_class'
+                            position: '1'
+                        }
+                    },
+                    {
+                        table: 'sys_choice'
+                        id: 'e0854f40d3cf4552ad68157afbfe42ec'
+                        key: {
+                            name: 'x_giss2_kyd_effort_weight'
+                            element: 'driver'
+                            value: 'script_lines'
+                            language: 'en'
+                            dependent_value: 'NULL'
                         }
                     },
                     {
@@ -3871,6 +5117,39 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_ui_element'
+                        id: 'ec78caa9db974ef9badf46334f5bd58a'
+                        key: {
+                            sys_ui_section: {
+                                id: 'fa9c4f54e94a4f8d9da91cb24ceba558'
+                                key: {
+                                    name: 'x_giss2_kyd_effort_weight'
+                                    caption: 'Weight'
+                                    view: {
+                                        id: 'Default view'
+                                        key: {
+                                            name: 'NULL'
+                                        }
+                                    }
+                                    sys_domain: 'global'
+                                }
+                            }
+                            element: 'label'
+                            position: '2'
+                        }
+                    },
+                    {
+                        table: 'sys_choice'
+                        id: 'ed1c8aa47ca745bc80ec77081ea73883'
+                        key: {
+                            name: 'x_giss2_kyd_effort_weight'
+                            element: 'driver'
+                            value: 'variables'
+                            language: 'en'
+                            dependent_value: 'NULL'
+                        }
+                    },
+                    {
                         table: 'sys_index'
                         id: 'edaab5ebd5254dafa67120164ade464c'
                         key: {
@@ -3895,6 +5174,22 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_dictionary'
+                        id: 'f3610906418f4ad18fea851796fe4073'
+                        key: {
+                            name: 'x_giss2_kyd_effort_weight'
+                            element: 'category'
+                        }
+                    },
+                    {
+                        table: 'sys_dictionary'
+                        id: 'f3be8bb578ac43d9a9948a6f765a38e9'
+                        key: {
+                            name: 'x_giss2_kyd_effort_weight'
+                            element: 'active'
+                        }
+                    },
+                    {
                         table: 'sys_one_extend_resource_mapping'
                         id: 'f4714b0c3a6744c88293d25c8ce96f7b'
                         key: {
@@ -3903,10 +5198,49 @@ declare global {
                         }
                     },
                     {
+                        table: 'sys_ui_action_role'
+                        id: 'f9bf52cf676d4182ae56d9f567ea35ac'
+                        key: {
+                            sys_ui_action: 'a939ab7fba19445c843e8b1415cb9704'
+                            sys_user_role: {
+                                id: '8dbf9ba175a049c89f1efa5bdd45d6fa'
+                                key: {
+                                    name: 'x_giss2_kyd.admin'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        table: 'sys_choice'
+                        id: 'f9d9f96b401d41ce823405d3ff3392e3'
+                        key: {
+                            name: 'x_giss2_kyd_effort_weight'
+                            element: 'category'
+                            value: 'ui'
+                            language: 'en'
+                            dependent_value: 'NULL'
+                        }
+                    },
+                    {
                         table: 'sn_nowassist_skill_config'
                         id: 'fa97355eec2a484dad2ee85bd3ada3e4'
                         key: {
                             skill_id: '3fbbff97a91d42198cacedf9b55bdc1f'
+                        }
+                    },
+                    {
+                        table: 'sys_ui_section'
+                        id: 'fa9c4f54e94a4f8d9da91cb24ceba558'
+                        key: {
+                            name: 'x_giss2_kyd_effort_weight'
+                            caption: 'Weight'
+                            view: {
+                                id: 'Default view'
+                                key: {
+                                    name: 'NULL'
+                                }
+                            }
+                            sys_domain: 'global'
                         }
                     },
                     {

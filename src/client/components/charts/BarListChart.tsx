@@ -11,6 +11,8 @@ interface BarListChartProps {
     rowHeight?: number
     valueFormatter?: (v: number) => string
     showValues?: boolean
+    // Con più serie: impilate (parti di un totale) o affiancate (misure da confrontare)
+    stacked?: boolean
 }
 
 // Barre orizzontali, singole o impilate (una riga per categoria).
@@ -22,9 +24,11 @@ export function BarListChart({
     rowHeight = 26,
     valueFormatter = (v) => String(v),
     showValues = series.length === 1,
+    stacked: stackedProp = true,
 }: BarListChartProps) {
-    const stacked = series.length > 1
-    const height = Math.max(120, data.length * rowHeight + (stacked ? 56 : 24))
+    const stacked = series.length > 1 && stackedProp
+    const grouped = series.length > 1 && !stackedProp
+    const height = Math.max(120, data.length * rowHeight * (grouped ? series.length * 0.75 : 1) + (series.length > 1 ? 56 : 24))
     return (
         <ResponsiveContainer width="100%" height={height}>
             <BarChart data={data} layout="vertical" margin={{ top: 4, right: showValues ? 48 : 12, bottom: 0, left: 0 }} barCategoryGap={4}>
@@ -40,7 +44,7 @@ export function BarListChart({
                     tickFormatter={(v: string) => (v.length > 26 ? v.slice(0, 25) + '…' : v)}
                 />
                 <Tooltip cursor={{ fill: 'rgba(0,0,0,0.04)' }} contentStyle={tooltipStyle} formatter={(v, name) => [valueFormatter(v as number), name]} />
-                {stacked && <Legend verticalAlign="top" height={28} iconType="circle" iconSize={8} wrapperStyle={{ fontSize: 12 }} />}
+                {series.length > 1 && <Legend verticalAlign="top" height={28} iconType="circle" iconSize={8} wrapperStyle={{ fontSize: 12 }} />}
                 {series.map((s, i) => (
                     <Bar
                         key={s.key}

@@ -1,10 +1,11 @@
-import { GlideRecord } from '@servicenow/glide'
+import { GlideRecord, gs } from '@servicenow/glide'
 import type { AnalysisKpis, AnalysisStage, DeveloperRef, GovernanceSection, KydAnalysisResult, ToolStat } from '../../client/types'
 import { MAX_SCRIPT_FAILS } from './config.ts'
 import { buildIdentity } from './identity.ts'
 import { collectConversations, newScanContext, scanMessages } from './messages.ts'
 import { buildMetadata, buildUpdateSets } from './metadata.ts'
 import { buildGraph } from './graph.ts'
+import { buildAcceleration } from '../effort/acceleration.ts'
 import { countRows, periodQuery, sortedPairs } from './util.ts'
 
 export interface EngineOutput {
@@ -87,6 +88,25 @@ export function buildAnalysis(userSysId: string, from: string, to: string, progr
     const peakDate = days.reduce((best, d) => (ctx.byDay[d] > (ctx.byDay[best] || 0) ? d : best), days[0] || '')
     const pq = ctx.pq
 
+    // La stima dell'effort è un di più: un suo errore non deve invalidare l'analisi.
+    progress('effort', 'Estimating the manual effort')
+    let acceleration
+    try {
+        acceleration = buildAcceleration({
+            userSysId,
+            userName,
+            from,
+            to,
+            conversations: roots,
+            promptTimes: ctx.promptTimes,
+            prompts: Object.entries(ctx.prompts).map(([conversation, items]) => ({ conversation, items })),
+            scriptIntents: ctx.scriptIntents,
+            updateSets,
+        })
+    } catch (e: any) {
+        gs.warn(`KYD: effort estimate failed: ${e?.message || e}`)
+    }
+
     progress('graph', 'Building the relationship graph')
     const result: KydAnalysisResult = {
         identity,
@@ -151,6 +171,7 @@ export function buildAnalysis(userSysId: string, from: string, to: string, progr
             .filter((id) => ctx.prompts[id]?.length)
             .map((id) => ({ conversation: id, items: ctx.prompts[id] })),
         graph: buildGraph(developer.name, pq.total, roots, updateSets, metadata),
+        acceleration,
     }
 
     return {

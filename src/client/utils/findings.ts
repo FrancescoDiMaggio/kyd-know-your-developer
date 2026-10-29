@@ -72,6 +72,21 @@ export function buildFindings(r: KydAnalysisResult): Finding[] {
             evidence: t('Tools with at least as many failures as successes.'),
         })
 
+    // Dati di business modificati dagli script di Build Agent (dai rollback context).
+    const dataTables = (r.acceleration?.scripts.tables || []).filter((x) => !x.metadata && !x.table.startsWith('sys_update'))
+    if (dataTables.length)
+        out.push({
+            severity: 'medium',
+            title: fill(
+                t('Build Agent scripts changed %1 records on data tables'),
+                fmtNumber(dataTables.reduce((sum, x) => sum + x.count, 0)),
+            ),
+            evidence: dataTables
+                .slice(0, 6)
+                .map((x) => `${x.table} (${fmtNumber(x.count)})`)
+                .join(', '),
+        })
+
     const open = r.updateSets.filter((u) => u.state === 'in progress' && !u.anomalous)
     if (open.length)
         out.push({

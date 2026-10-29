@@ -44,6 +44,7 @@ export const x_giss2_kyd_analysis = Table({
                 metadata: { label: 'Metadata and update sets', sequence: 50 },
                 governance: { label: 'Governance indicators', sequence: 60 },
                 graph: { label: 'Relationship graph', sequence: 70 },
+                effort: { label: 'Effort estimate', sequence: 75 },
                 insights: { label: 'Now Assist insights', sequence: 80 },
                 complete: { label: 'Complete', sequence: 90 },
                 error: { label: 'Error', sequence: 100 },

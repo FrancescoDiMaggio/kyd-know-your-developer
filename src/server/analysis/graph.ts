@@ -1,6 +1,5 @@
 import type { Conversation, GraphEdge, GraphNode, MetadataSection, UpdateSet } from '../../client/types'
-
-const ts = (s: string) => new Date(s.replace(' ', 'T') + (s.length === 16 ? ':00' : '') + 'Z').getTime()
+import { conversationOwner } from './windows.ts'
 
 // Grafo di relazione: ogni elemento datato viene attribuito alla conversazione
 // la cui finestra [creata, ultimo messaggio] lo contiene; a parità vince la più stretta.
@@ -11,14 +10,7 @@ export function buildGraph(
     updateSets: UpdateSet[],
     metadata: MetadataSection,
 ): { nodes: GraphNode[]; edges: GraphEdge[] } {
-    const roots = conversations.filter((c) => !c.isSubAgent && c.createdOn && c.lastMessageOn)
-    const ownerOf = (when: string): string | null => {
-        const t = ts(when)
-        const hits = roots.filter((c) => ts(c.createdOn) <= t && t <= ts(c.lastMessageOn) + 60000)
-        if (!hits.length) return null
-        const span = (c: Conversation) => ts(c.lastMessageOn) - ts(c.createdOn)
-        return hits.sort((a, b) => span(a) - span(b))[0].sysId
-    }
+    const ownerOf = conversationOwner(conversations)
 
     const DEV = 'dev'
     const nodes: GraphNode[] = [{ id: DEV, label: developerName, type: 'developer', weight: prompts }]

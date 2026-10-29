@@ -11,6 +11,7 @@ import { RelationshipGraph } from '../components/RelationshipGraph'
 import { SectionCard } from '../components/SectionCard'
 import { OverviewTab } from '../sections/OverviewTab'
 import { ReportTab } from '../sections/ReportTab'
+import { AccelerationTab } from '../sections/AccelerationTab'
 import { ConversationsTab } from '../sections/ConversationsTab'
 import { ToolsTab } from '../sections/ToolsTab'
 import { WorkTab } from '../sections/WorkTab'
@@ -21,7 +22,7 @@ import { fmtDate, fmtDateTime } from '../utils/format'
 import { stageLabel } from '../utils/labels'
 import { Route, setPageTitle } from '../utils/navigation'
 
-const TAB_VALUES = ['overview', 'report', 'conversations', 'tools', 'work', 'behaviour', 'metadata', 'governance', 'graph']
+const TAB_VALUES = ['overview', 'report', 'acceleration', 'conversations', 'tools', 'work', 'behaviour', 'metadata', 'governance', 'graph']
 
 function tabLabel(value: string): string {
     switch (value) {
@@ -29,6 +30,8 @@ function tabLabel(value: string): string {
             return t('Overview')
         case 'report':
             return t('Report')
+        case 'acceleration':
+            return t('Acceleration')
         case 'conversations':
             return t('Conversations')
         case 'tools':
@@ -200,6 +203,9 @@ export function DeveloperView({ route, navigate }: Props) {
                     </Tabs.Content>
                     <Tabs.Content value="report">
                         <ReportTab r={r} />
+                    </Tabs.Content>
+                    <Tabs.Content value="acceleration">
+                        <AccelerationTab r={r} />
                     </Tabs.Content>
                     <Tabs.Content value="conversations">
                         <ConversationsTab r={r} />

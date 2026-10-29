@@ -39,3 +39,18 @@ Record({
         order: 200,
     },
 })
+
+Record({
+    $id: Now.ID['kyd-module-effort-weights'],
+    table: 'sys_app_module',
+    data: {
+        title: 'Effort weights',
+        application: kydMenu,
+        link_type: 'LIST',
+        name: 'x_giss2_kyd_effort_weight',
+        hint: 'Configurable weights of the manual effort estimate',
+        roles: ['x_giss2_kyd.admin'],
+        active: true,
+        order: 300,
+    },
+})

@@ -13,6 +13,7 @@ export type AnalysisStage =
     | 'metadata'
     | 'governance'
     | 'graph'
+    | 'effort'
     | 'insights'
     | 'complete'
     | 'error'
@@ -273,7 +274,85 @@ export interface KydAnalysisResult {
     governance: GovernanceSection
     prompts: { conversation: string; items: PromptEntry[] }[]
     graph: { nodes: GraphNode[]; edges: GraphEdge[] }
+    acceleration?: AccelerationSection
     insights?: KydInsights
+}
+
+// Stima dell'effort manuale contro il lavoro con Build Agent.
+// Livello di certezza con cui un artefatto è attribuito a Build Agent.
+export type AttributionLevel = 'checkpoint' | 'script' | 'install' | 'window' | 'manual'
+export type WeightDriver = 'none' | 'script_lines' | 'fields' | 'flow_steps' | 'action_steps' | 'variables'
+
+export interface EffortWeight {
+    cls: string
+    label: string
+    category: string
+    baseHours: number
+    driver: WeightDriver
+    hoursPerUnit: number
+    maxUnits?: number
+    source: 'default' | 'custom'
+}
+
+export interface EstimatedArtifact {
+    sysId: string
+    cls: string
+    name: string
+    createdOn: string
+    conversation?: string
+    attribution: AttributionLevel
+    units: number
+    hours: number
+}
+
+export interface WorkPackage {
+    conversation: string
+    title: string
+    artifacts: number
+    attributed: number // via checkpoint, script o install
+    estimatedHours: number
+    sessionHours: number
+    acceleration: number | null
+    stories: string[]
+}
+
+// Gli story point sono una valuta del team: si mostrano nel loro contesto, non si convertono in ore.
+export interface LinkedStory {
+    number: string
+    shortDescription: string
+    storyPoints: number | null
+    state: string
+    team: string
+    product: string
+    conversations: string[]
+    teamStats: { stories: number; median: number; p90: number; max: number; fibonacciShare: number } | null
+}
+
+export interface AccelerationSection {
+    hoursPerDay: number
+    range: { low: number; high: number }
+    sessionGapMinutes: number
+    estimatedHours: number
+    sessionHours: number
+    agentMinutes: number
+    acceleration: number | null
+    coverage: Record<AttributionLevel, number>
+    artifacts: EstimatedArtifact[]
+    packages: WorkPackage[]
+    stories: LinkedStory[]
+    scripts: {
+        total: number
+        writing: number
+        readOnly: number
+        rollbackRows: number | null
+        metadataRows: number | null
+        dataRows: number | null
+        byOperation: Record<string, number>
+        tables: { table: string; count: number; metadata: boolean }[]
+    }
+    checkpoints: { total: number; install: number; manualEdit: number; reverted: number; records: number }
+    telemetry: { tasks: number; complete: number; error: number; aborted: number; inProgress: number; success: number; minutes: number } | null
+    weights: EffortWeight[]
 }
 
 // Lettura testuale prodotta dalle Skill Now Assist a fine analisi.

@@ -28,3 +28,21 @@ CrossScopePrivilege({
     targetScope: 'sn_build_agent',
     targetType: 'sys_db_object',
 })
+
+CrossScopePrivilege({
+    $id: Now.ID['kyd-read-sn_build_agent_checkpoint'],
+    operation: 'read',
+    status: 'allowed',
+    targetName: 'sn_build_agent_checkpoint',
+    targetScope: 'sn_build_agent',
+    targetType: 'sys_db_object',
+})
+
+CrossScopePrivilege({
+    $id: Now.ID['kyd-read-sn_build_agent_task_telemetry'],
+    operation: 'read',
+    status: 'allowed',
+    targetName: 'sn_build_agent_task_telemetry',
+    targetScope: 'sn_build_agent',
+    targetType: 'sys_db_object',
+})

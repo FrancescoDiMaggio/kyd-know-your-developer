@@ -67,6 +67,7 @@ export function DeveloperCard({ r, summary }: { r: KydAnalysisResult; summary: A
     const b = r.behaviour
     const g = r.governance
     const delivery = r.insights?.delivery
+    const acc = r.acceleration
     const range = fmtRange(summary.periodFrom, summary.periodTo)
     const month = monthOf(summary.periodFrom, summary.periodTo)
     const artifacts = r.metadata.artifacts.length
@@ -104,6 +105,17 @@ export function DeveloperCard({ r, summary }: { r: KydAnalysisResult; summary: A
                     <Text mt="3" color="whiteAlpha.900" textStyle={{ base: 'sm', md: 'md' }}>
                         {subtitle}
                     </Text>
+                    {acc && acc.acceleration != null && (
+                        <Text mt="2" color={ACCENT} fontWeight="700" textStyle={{ base: 'sm', md: 'md' }}>
+                            {fill(
+                                t('Estimated manual effort %1–%2 h, delivered in about %3 h of Build Agent sessions: ≈ %4× faster.'),
+                                fmtNumber(Math.round(acc.estimatedHours * acc.range.low)),
+                                fmtNumber(Math.round(acc.estimatedHours * acc.range.high)),
+                                fmtNumber(Math.round(acc.sessionHours)),
+                                fmtNumber(Math.round(acc.acceleration * 10) / 10),
+                            )}
+                        </Text>
+                    )}
                 </Box>
 
                 <SimpleGrid columns={{ base: 2, md: 3, xl: 6 }} gap="3">

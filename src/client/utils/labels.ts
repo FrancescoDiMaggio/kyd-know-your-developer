@@ -1,5 +1,5 @@
 import { t } from 'sn-translate'
-import type { AnalysisStage, ChecklistKey, PromptQualityKey, Severity, StreamOutcome } from '../types'
+import type { AnalysisStage, AttributionLevel, ChecklistKey, PromptQualityKey, Severity, StreamOutcome, WeightDriver } from '../types'
 
 // Etichette traducibili dei valori codificati restituiti dal motore.
 // Ogni t() ha un letterale come primo argomento, così la build lo raccoglie.
@@ -20,6 +20,8 @@ export function stageLabel(stage?: AnalysisStage): string {
             return t('Computing governance indicators')
         case 'graph':
             return t('Building the relationship graph')
+        case 'effort':
+            return t('Estimating the manual effort')
         case 'insights':
             return t('Generating Now Assist insights')
         case 'complete':
@@ -109,4 +111,69 @@ export const OUTCOME_PALETTE: Record<string, string> = {
 
 export function unnamed(name: string): string {
     return name || t('(no name)')
+}
+
+export function attributionLabel(level: AttributionLevel): string {
+    switch (level) {
+        case 'checkpoint':
+            return t('Build Agent checkpoint')
+        case 'script':
+            return t('Build Agent script')
+        case 'install':
+            return t('Build Agent install')
+        case 'window':
+            return t('Same time window (probable)')
+        case 'manual':
+            return t('Outside Build Agent')
+    }
+}
+
+export const ATTRIBUTION_PALETTE: Record<AttributionLevel, string> = {
+    checkpoint: 'green',
+    script: 'green',
+    install: 'green',
+    window: 'yellow',
+    manual: 'gray',
+}
+
+export function driverLabel(driver: WeightDriver): string {
+    switch (driver) {
+        case 'script_lines':
+            return t('script lines')
+        case 'fields':
+            return t('table fields')
+        case 'flow_steps':
+            return t('flow steps')
+        case 'action_steps':
+            return t('action steps')
+        case 'variables':
+            return t('catalog variables')
+        default:
+            return t('none')
+    }
+}
+
+export function categoryLabel(category: string): string {
+    switch (category) {
+        case 'data_model':
+            return t('Data model')
+        case 'logic':
+            return t('Logic')
+        case 'ui':
+            return t('User interface')
+        case 'catalog':
+            return t('Service Catalog')
+        case 'automation':
+            return t('Automation')
+        case 'integration':
+            return t('Integration')
+        case 'security':
+            return t('Security')
+        case 'notification':
+            return t('Notification')
+        case 'configuration':
+            return t('Configuration')
+        default:
+            return t('Other')
+    }
 }
