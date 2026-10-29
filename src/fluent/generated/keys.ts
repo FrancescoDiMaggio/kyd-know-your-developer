@@ -692,6 +692,10 @@ declare global {
                         table: 'sys_ui_message'
                         id: '7b531de8f0064082b55041573a5305d0'
                     }
+                    'By default, session time counts the pauses between prompts up to %1 minutes and adds %2 minutes at the start of each session; work done outside the chat is not counted.': {
+                        table: 'sys_ui_message'
+                        id: 'edb7d691a09d4296ba38e1f6b5e9727f'
+                    }
                     Cancel: {
                         table: 'sys_ui_message'
                         id: '9672374e8f0f4027a8cd99896d678075'
@@ -1298,6 +1302,10 @@ declare global {
                     kyd_delivery_outcomes_prompt_v2: {
                         table: 'sys_generative_ai_config'
                         id: 'ff931980d42049d09a7fb3225935aae0'
+                    }
+                    kyd_delivery_outcomes_prompt_v3: {
+                        table: 'sys_generative_ai_config'
+                        id: 'a2d0a09d4f2c4f6b9aced16f822c7137'
                     }
                     kyd_delivery_outcomes_skill: {
                         table: 'sys_one_extend_capability'
@@ -2000,6 +2008,7 @@ declare global {
                     'Session time counts the pauses between prompts up to %1 minutes and adds %2 minutes at the start of each session; work done outside the chat is not counted.': {
                         table: 'sys_ui_message'
                         id: 'bd24b7ce66034e45aeecbc7b58695015'
+                        deleted: true
                     }
                     Severity: {
                         table: 'sys_ui_message'
@@ -5155,6 +5164,13 @@ declare global {
                         key: {
                             logical_table_name: 'x_giss2_kyd_analysis'
                             col_name_string: 'developer,sys_created_on'
+                        }
+                    },
+                    {
+                        table: 'sys_generative_ai_prompt_config'
+                        id: 'f038f042e0d641ecbb3b4f20dcfdbb2d'
+                        key: {
+                            ai_config: 'a2d0a09d4f2c4f6b9aced16f822c7137'
                         }
                     },
                     {
