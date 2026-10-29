@@ -3,6 +3,7 @@ import { RestApi } from '@servicenow/sdk/core'
 import {
     createAnalysis,
     getAnalysis,
+    getSession,
     listAnalyses,
     listCandidates,
     listDevelopers,
@@ -17,6 +18,14 @@ RestApi({
     consumes: 'application/json',
     produces: 'application/json',
     routes: [
+        {
+            $id: Now.ID['kyd-rest-session'],
+            name: 'session',
+            method: 'GET',
+            path: '/session',
+            shortDescription: 'Lingua della sessione corrente',
+            script: getSession,
+        },
         {
             $id: Now.ID['kyd-rest-candidates'],
             name: 'candidates',

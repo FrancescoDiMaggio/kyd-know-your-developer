@@ -1,6 +1,8 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { Box, Button, ButtonGroup, Card, DataList, Heading, Stack, Steps, Text } from '@chakra-ui/react'
 import { ArrowLeft, ArrowRight, Check, Play } from 'lucide-react'
+import { t } from 'sn-translate'
+import { fill } from '../utils/i18n'
 import type { DeveloperCandidate } from '../types'
 import { kydService } from '../services/kyd-service'
 import { toaster } from '../components/toaster'
@@ -9,12 +11,6 @@ import type { Route } from '../utils/navigation'
 import { CandidatePicker } from './wizard/CandidatePicker'
 import { PeriodPicker, PeriodChoice, resolvePeriod } from './wizard/PeriodPicker'
 
-const STEPS = [
-    { title: 'Developer', description: 'Chi analizzare' },
-    { title: 'Periodo', description: 'Finestra temporale' },
-    { title: 'Conferma', description: 'Avvio analisi' },
-]
-
 export function NewAnalysisView({ navigate }: { navigate: (r: Route) => void }) {
     const [step, setStep] = useState(0)
     const [candidates, setCandidates] = useState<DeveloperCandidate[] | null>(null)
@@ -22,9 +18,15 @@ export function NewAnalysisView({ navigate }: { navigate: (r: Route) => void }) 
     const [period, setPeriod] = useState<PeriodChoice>({ kind: 'current-month' })
     const [submitting, setSubmitting] = useState(false)
 
+    const steps = [
+        { title: t('Developer'), description: t('Who to analyse') },
+        { title: t('Period'), description: t('Time window') },
+        { title: t('Confirm'), description: t('Start the analysis') },
+    ]
+
     useEffect(() => {
         kydService.listCandidates().then(setCandidates, (e) =>
-            toaster.create({ type: 'error', title: 'Impossibile caricare i developer', description: String(e) }),
+            toaster.create({ type: 'error', title: t('Unable to load the developers'), description: String(e) }),
         )
     }, [])
 
@@ -39,12 +41,12 @@ export function NewAnalysisView({ navigate }: { navigate: (r: Route) => void }) 
             const a = await kydService.requestAnalysis(candidate.developer.sysId, range)
             toaster.create({
                 type: 'success',
-                title: a.state === 'running' ? `Analisi ${a.number} già in corso` : `Analisi ${a.number} in coda`,
-                description: `${candidate.developer.name}: può richiedere qualche minuto, segui lo stato dalla lista.`,
+                title: a.state === 'running' ? fill(t('Analysis %1 already running'), a.number) : fill(t('Analysis %1 queued'), a.number),
+                description: fill(t('%1: it can take a few minutes, follow the state from the list.'), candidate.developer.name),
             })
             navigate({ view: 'list' })
         } catch (e) {
-            toaster.create({ type: 'error', title: "Impossibile avviare l'analisi", description: String(e) })
+            toaster.create({ type: 'error', title: t('Unable to start the analysis'), description: String(e) })
             setSubmitting(false)
         }
     }
@@ -52,15 +54,15 @@ export function NewAnalysisView({ navigate }: { navigate: (r: Route) => void }) 
     return (
         <Stack gap="5" maxW="4xl" mx="auto">
             <Box>
-                <Heading size="xl">Nuova analisi KYD</Heading>
-                <Text color="fg.muted">Scegli un developer che ha conversato con Build Agent e il periodo da analizzare.</Text>
+                <Heading size="xl">{t('New KYD analysis')}</Heading>
+                <Text color="fg.muted">{t('Pick a developer who worked with Build Agent and the period to analyse.')}</Text>
             </Box>
             <Card.Root bg="bg">
                 <Card.Body>
-                    <Steps.Root step={step} onStepChange={(e) => setStep(e.step)} count={STEPS.length} colorPalette="brand" linear>
+                    <Steps.Root step={step} onStepChange={(e) => setStep(e.step)} count={steps.length} colorPalette="brand" linear>
                         <Steps.List mb="6">
-                            {STEPS.map((s, i) => (
-                                <Steps.Item key={s.title} index={i}>
+                            {steps.map((s, i) => (
+                                <Steps.Item key={i} index={i}>
                                     <Steps.Indicator>
                                         <Steps.Status complete={<Check size={14} />} incomplete={<Steps.Number />} />
                                     </Steps.Indicator>
@@ -83,46 +85,47 @@ export function NewAnalysisView({ navigate }: { navigate: (r: Route) => void }) 
                             {candidate && range && (
                                 <DataList.Root orientation="horizontal" size="lg">
                                     <DataList.Item>
-                                        <DataList.ItemLabel>Developer</DataList.ItemLabel>
+                                        <DataList.ItemLabel>{t('Developer')}</DataList.ItemLabel>
                                         <DataList.ItemValue>
                                             {candidate.developer.name} ({candidate.developer.userName})
                                         </DataList.ItemValue>
                                     </DataList.Item>
                                     <DataList.Item>
-                                        <DataList.ItemLabel>Conversazioni Build Agent</DataList.ItemLabel>
+                                        <DataList.ItemLabel>{t('Build Agent conversations')}</DataList.ItemLabel>
                                         <DataList.ItemValue>
-                                            {candidate.conversations} · ultima attività {fmtDateTime(candidate.lastActivity)}
+                                            {fill(t('%1 · last activity %2'), candidate.conversations, fmtDateTime(candidate.lastActivity))}
                                         </DataList.ItemValue>
                                     </DataList.Item>
                                     <DataList.Item>
-                                        <DataList.ItemLabel>Periodo</DataList.ItemLabel>
+                                        <DataList.ItemLabel>{t('Period')}</DataList.ItemLabel>
                                         <DataList.ItemValue>
                                             {fmtDate(range.from)} → {fmtDate(range.to)}
                                         </DataList.ItemValue>
                                     </DataList.Item>
                                     <DataList.Item>
-                                        <DataList.ItemLabel>Analisi precedenti</DataList.ItemLabel>
+                                        <DataList.ItemLabel>{t('Previous analyses')}</DataList.ItemLabel>
                                         <DataList.ItemValue>{candidate.analysesCount}</DataList.ItemValue>
                                     </DataList.Item>
                                 </DataList.Root>
                             )}
                             <Text mt="5" color="fg.muted" textStyle="sm">
-                                L'analisi gira in background e può richiedere qualche minuto: verrai riportato alla lista
-                                dei developer, dove potrai seguirne lo stato.
+                                {t(
+                                    'The analysis runs in the background and can take a few minutes: you will be taken back to the developer list, where you can follow its state.',
+                                )}
                             </Text>
                         </Steps.Content>
 
                         <ButtonGroup size="sm" variant="outline" mt="6" justifyContent="space-between" width="100%">
                             <Button onClick={() => (step === 0 ? navigate({ view: 'list' }) : setStep(step - 1))}>
-                                <ArrowLeft /> {step === 0 ? 'Annulla' : 'Indietro'}
+                                <ArrowLeft /> {step === 0 ? t('Cancel') : t('Back')}
                             </Button>
-                            {step < STEPS.length - 1 ? (
+                            {step < steps.length - 1 ? (
                                 <Button variant="solid" colorPalette="brand" disabled={!canNext} onClick={() => setStep(step + 1)}>
-                                    Avanti <ArrowRight />
+                                    {t('Next')} <ArrowRight />
                                 </Button>
                             ) : (
                                 <Button variant="solid" colorPalette="brand" loading={submitting} onClick={() => void submit()}>
-                                    <Play /> Avvia analisi
+                                    <Play /> {t('Start analysis')}
                                 </Button>
                             )}
                         </ButtonGroup>

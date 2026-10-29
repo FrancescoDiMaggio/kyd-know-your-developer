@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
+import { t } from 'sn-translate'
 
 export type View = 'list' | 'new' | 'detail'
 
@@ -8,8 +9,6 @@ export interface Route {
     analysis?: string
     tab?: string
 }
-
-const APP_TITLE = 'KYD - Know Your Developer'
 
 export function readRoute(): Route {
     const p = new URLSearchParams(window.location.search)
@@ -31,7 +30,8 @@ function toSearch(route: Route): string {
 }
 
 export function setPageTitle(title?: string) {
-    const full = title ? `${title} · ${APP_TITLE}` : APP_TITLE
+    const appTitle = t('KYD - Know Your Developer')
+    const full = title ? `${title} · ${appTitle}` : appTitle
     if (window.self !== window.top) {
         ;(window as any).CustomEvent?.fireTop?.('magellanNavigator.permalink.set', {
             relativePath: window.location.pathname + window.location.search,

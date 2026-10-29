@@ -1,17 +1,36 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { Badge, Box, Button, HStack, List, Stack, Text, Wrap } from '@chakra-ui/react'
 import { Maximize2 } from 'lucide-react'
+import { t } from 'sn-translate'
+import { fill } from '../utils/i18n'
 import cytoscape, { Core, ElementDefinition } from 'cytoscape'
 import type { GraphEdge, GraphNode, GraphNodeType } from '../types'
 import { chartColors } from '../theme'
 
-const TYPES: Record<GraphNodeType, { label: string; color: string; shape: string }> = {
-    developer: { label: 'Developer', color: '#032d42', shape: 'ellipse' },
-    conversation: { label: 'Conversazione', color: chartColors.series[0], shape: 'round-rectangle' },
-    updateset: { label: 'Update set', color: chartColors.series[1], shape: 'round-diamond' },
-    artifacts: { label: 'Artefatti', color: chartColors.series[2], shape: 'ellipse' },
-    table: { label: 'Tabella', color: chartColors.series[3], shape: 'round-hexagon' },
-    file: { label: 'File', color: chartColors.series[6], shape: 'round-tag' },
+const TYPES: Record<GraphNodeType, { color: string; shape: string }> = {
+    developer: { color: '#032d42', shape: 'ellipse' },
+    conversation: { color: chartColors.series[0], shape: 'round-rectangle' },
+    updateset: { color: chartColors.series[1], shape: 'round-diamond' },
+    artifacts: { color: chartColors.series[2], shape: 'ellipse' },
+    table: { color: chartColors.series[3], shape: 'round-hexagon' },
+    file: { color: chartColors.series[6], shape: 'round-tag' },
+}
+
+function typeLabel(type: GraphNodeType): string {
+    switch (type) {
+        case 'developer':
+            return t('Developer')
+        case 'conversation':
+            return t('Conversation')
+        case 'updateset':
+            return t('Update set')
+        case 'artifacts':
+            return t('Artifacts')
+        case 'table':
+            return t('Table')
+        case 'file':
+            return t('File')
+    }
 }
 
 interface Props {
@@ -104,17 +123,17 @@ export function RelationshipGraph({ nodes, edges, height = 560 }: Props) {
         <Stack gap="3">
             <HStack justify="space-between" wrap="wrap" gap="2">
                 <Wrap gap="3">
-                    {present.map((t) => (
-                        <HStack key={t} gap="1.5">
-                            <Box w="10px" h="10px" borderRadius="full" bg={TYPES[t].color} />
+                    {present.map((type) => (
+                        <HStack key={type} gap="1.5">
+                            <Box w="10px" h="10px" borderRadius="full" bg={TYPES[type].color} />
                             <Text textStyle="xs" color="fg.muted">
-                                {TYPES[t].label} ({nodes.filter((n) => n.type === t).length})
+                                {typeLabel(type)} ({nodes.filter((n) => n.type === type).length})
                             </Text>
                         </HStack>
                     ))}
                 </Wrap>
                 <Button size="xs" variant="outline" onClick={() => cyRef.current?.fit(undefined, 24)}>
-                    <Maximize2 /> Adatta
+                    <Maximize2 /> {t('Fit')}
                 </Button>
             </HStack>
             <HStack align="stretch" gap="3" flexDirection={{ base: 'column', lg: 'row' }}>
@@ -125,19 +144,19 @@ export function RelationshipGraph({ nodes, edges, height = 560 }: Props) {
                     borderWidth="1px"
                     borderRadius="l3"
                     bg="bg"
-                    aria-label="Grafo delle relazioni tra developer, conversazioni, update set, artefatti e tabelle"
+                    aria-label={t('Relationship graph between developer, conversations, update sets, artifacts and tables')}
                     role="img"
                 />
                 <Box w={{ base: '100%', lg: '300px' }} borderWidth="1px" borderRadius="l3" bg="bg" p="4" overflowY="auto" maxH={`${height}px`}>
                     {!selected && (
                         <Text textStyle="sm" color="fg.muted">
-                            Seleziona un nodo per vederne il dettaglio e le relazioni. Rotella per lo zoom, trascina per spostare.
+                            {t('Select a node to see its details and relations. Scroll to zoom, drag to move.')}
                         </Text>
                     )}
                     {selected && (
                         <Stack gap="3">
                             <Badge alignSelf="start" style={{ background: TYPES[selected.type].color, color: 'white' }}>
-                                {TYPES[selected.type].label}
+                                {typeLabel(selected.type)}
                             </Badge>
                             <Text fontWeight="semibold" wordBreak="break-word">
                                 {selected.label}
@@ -146,18 +165,18 @@ export function RelationshipGraph({ nodes, edges, height = 560 }: Props) {
                                 <List.Root gap="1" textStyle="sm" ps="4">
                                     {selected.items.map((it, i) => (
                                         <List.Item key={i} wordBreak="break-word">
-                                            {it}
+                                            {it && it !== '(senza nome)' ? it : t('(no name)')}
                                         </List.Item>
                                     ))}
                                 </List.Root>
                             )}
                             <Text textStyle="xs" color="fg.muted" mt="2">
-                                Collegato a {neighbours.length} nodi
+                                {fill(t('Linked to %1 nodes'), neighbours.length)}
                             </Text>
                             <List.Root gap="1" textStyle="xs" ps="4">
                                 {neighbours.slice(0, 20).map((n) => (
                                     <List.Item key={n.id}>
-                                        {TYPES[n.type].label}: {n.label}
+                                        {typeLabel(n.type)}: {n.label}
                                     </List.Item>
                                 ))}
                             </List.Root>

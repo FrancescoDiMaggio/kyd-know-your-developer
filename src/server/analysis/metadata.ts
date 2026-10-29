@@ -23,7 +23,7 @@ export function buildMetadata(userName: string, from: string, to: string): Metad
         artifacts.push({
             createdOn: (ka.getValue('sys_created_on') || '').substring(0, 16),
             cls: ka.getValue('sys_class_name'),
-            name: ka.getValue('sys_name') || '(senza nome)',
+            name: ka.getValue('sys_name') || '',
         })
     }
 

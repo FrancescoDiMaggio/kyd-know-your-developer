@@ -1,5 +1,6 @@
 import React from 'react'
 import { Field, HStack, Input, RadioCard, SimpleGrid, Stack } from '@chakra-ui/react'
+import { t } from 'sn-translate'
 import type { AnalysisPeriod } from '../../services/kyd-service'
 
 export type PeriodKind = 'current-month' | 'last-30' | 'last-90' | 'custom'
@@ -10,12 +11,14 @@ export interface PeriodChoice {
     to?: string
 }
 
-const OPTIONS: { kind: PeriodKind; label: string; description: string }[] = [
-    { kind: 'current-month', label: 'Mese corrente', description: 'Dal primo del mese a oggi' },
-    { kind: 'last-30', label: 'Ultimi 30 giorni', description: 'Finestra mobile' },
-    { kind: 'last-90', label: 'Ultimi 90 giorni', description: 'Per developer meno assidui' },
-    { kind: 'custom', label: 'Personalizzato', description: 'Scegli le date' },
-]
+function options(): { kind: PeriodKind; label: string; description: string }[] {
+    return [
+        { kind: 'current-month', label: t('Current month'), description: t('From the first of the month to today') },
+        { kind: 'last-30', label: t('Last 30 days'), description: t('Rolling window') },
+        { kind: 'last-90', label: t('Last 90 days'), description: t('For less frequent developers') },
+        { kind: 'custom', label: t('Custom'), description: t('Pick the dates') },
+    ]
+}
 
 const day = (d: Date) => d.toISOString().slice(0, 10)
 const glide = (yyyyMmDd: string) => `${yyyyMmDd} 00:00:00`
@@ -49,9 +52,9 @@ export function PeriodPicker({ value, onChange }: { value: PeriodChoice; onChang
                 onValueChange={(e) => e.value && onChange({ ...value, kind: e.value as PeriodKind })}
                 colorPalette="brand"
             >
-                <RadioCard.Label srOnly>Periodo da analizzare</RadioCard.Label>
+                <RadioCard.Label srOnly>{t('Period to analyse')}</RadioCard.Label>
                 <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} gap="3">
-                    {OPTIONS.map((o) => (
+                    {options().map((o) => (
                         <RadioCard.Item key={o.kind} value={o.kind}>
                             <RadioCard.ItemHiddenInput />
                             <RadioCard.ItemControl>
@@ -68,13 +71,13 @@ export function PeriodPicker({ value, onChange }: { value: PeriodChoice; onChang
             {value.kind === 'custom' && (
                 <HStack gap="4" align="start">
                     <Field.Root>
-                        <Field.Label>Dal</Field.Label>
+                        <Field.Label>{t('From')}</Field.Label>
                         <Input type="date" value={value.from || ''} onChange={(e) => onChange({ ...value, from: e.target.value })} />
                     </Field.Root>
                     <Field.Root invalid={invalid}>
-                        <Field.Label>Al (incluso)</Field.Label>
+                        <Field.Label>{t('To (included)')}</Field.Label>
                         <Input type="date" value={value.to || ''} onChange={(e) => onChange({ ...value, to: e.target.value })} />
-                        <Field.ErrorText>La data finale precede quella iniziale</Field.ErrorText>
+                        <Field.ErrorText>{t('The end date is before the start date')}</Field.ErrorText>
                     </Field.Root>
                 </HStack>
             )}

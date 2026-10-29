@@ -29,6 +29,10 @@ async function call<T>(path: string, init: RequestInit = {}): Promise<T> {
 }
 
 export const restService: KydService = {
+    async getSession() {
+        return call<{ language: string }>('/session')
+    },
+
     async listDevelopers() {
         return (await call<{ items: DeveloperRow[] }>('/developers')).items
     },

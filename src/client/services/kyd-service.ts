@@ -8,6 +8,7 @@ export interface AnalysisPeriod {
 
 // Punto unico di accesso ai dati della UI.
 export interface KydService {
+    getSession(): Promise<{ language: string }>
     listDevelopers(): Promise<DeveloperRow[]>
     listCandidates(): Promise<DeveloperCandidate[]>
     listAnalyses(developerSysId: string): Promise<AnalysisSummary[]>

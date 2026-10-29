@@ -1,5 +1,5 @@
 import { GlideRecord } from '@servicenow/glide'
-import type { AnalysisKpis, DeveloperRef, GovernanceSection, KydAnalysisResult, ToolStat } from '../../client/types'
+import type { AnalysisKpis, AnalysisStage, DeveloperRef, GovernanceSection, KydAnalysisResult, ToolStat } from '../../client/types'
 import { MAX_SCRIPT_FAILS } from './config.ts'
 import { buildIdentity } from './identity.ts'
 import { collectConversations, newScanContext, scanMessages } from './messages.ts'
@@ -15,20 +15,22 @@ export interface EngineOutput {
 
 const minutes = (ms: number) => Math.round(ms / 60000)
 
+export type Progress = (stage: AnalysisStage, message: string) => void
+
 // Esegue l'analisi KYD di un developer nel periodo [from, to).
-export function buildAnalysis(userSysId: string, from: string, to: string, progress: (msg: string) => void): EngineOutput {
+export function buildAnalysis(userSysId: string, from: string, to: string, progress: Progress): EngineOutput {
     const u = new GlideRecord('sys_user')
-    if (!u.get(userSysId)) throw new Error(`Utente ${userSysId} non trovato`)
+    if (!u.get(userSysId)) throw new Error(`User ${userSysId} not found`)
     const userName = u.getValue('user_name')
     const { developer, identity } = buildIdentity(u)
 
-    progress('Lettura delle conversazioni Build Agent…')
+    progress('conversations', 'Reading Build Agent conversations')
     const conv = collectConversations(userSysId, from, to)
     const ctx = newScanContext()
-    progress(`Scansione dei messaggi di ${conv.ids.length} conversazioni…`)
+    progress('messages', `Scanning messages of ${conv.ids.length} conversations`)
     scanMessages(ctx, conv)
 
-    progress('Analisi dei metadata e degli update set…')
+    progress('metadata', 'Analysing metadata and update sets')
     const metadata = buildMetadata(userName, from, to)
     const updateSets = buildUpdateSets(userName, from, to)
 
@@ -37,7 +39,7 @@ export function buildAnalysis(userSysId: string, from: string, to: string, progr
         .sort((a, b) => b.calls - a.calls)
     const toolsOk = toolItems.reduce((a, t) => a + t.ok, 0)
 
-    progress('Indicatori di governance…')
+    progress('governance', 'Computing governance indicators')
     const dateQ = periodQuery(from, to)
     const runScriptCalls = ctx.tools['run_script'] ? ctx.tools['run_script'].ok + ctx.tools['run_script'].ko : 0
     const scriptRequests = countRows('sn_build_agent_script_request', `sys_created_by=${userName}^${dateQ}`)
@@ -58,16 +60,26 @@ export function buildAnalysis(userSysId: string, from: string, to: string, progr
         frictionPrompts: ctx.pq.friction,
         checklist: [
             {
-                item: 'Bonificare gli update set "in progress" con volume anomalo (dati demo vs soluzione)',
+                key: 'anomalousUpdateSets',
+                item: 'Clean up "in progress" update sets with an anomalous volume (demo data vs solution)',
                 triggered: updateSets.some((s) => s.anomalous),
             },
-            { item: 'Eliminare le tabelle scratch np$* senza campi', triggered: metadata.tables.some((t) => t.scratch) },
+            { key: 'scratchTables', item: 'Delete the np$* scratch tables with no fields', triggered: metadata.tables.some((t) => t.scratch) },
             {
-                item: 'Audit dei campi/view aggiunti su tabelle OOTB (sc_req_item, sc_cat_item, task...)',
+                key: 'ootbChanges',
+                item: 'Audit fields and views added to platform tables (sc_req_item, sc_cat_item, task...)',
                 triggered: metadata.dictionaryByTable.some((d) => !/^(u_|x_)/.test(d.table)),
             },
-            { item: 'Coprire con ATF i catalog item e i flow modificati', triggered: atfTests === 0 && metadata.artifacts.length > 0 },
-            { item: 'Chiudere o completare gli update set rimasti aperti', triggered: updateSets.some((s) => s.state === 'in progress') },
+            {
+                key: 'atfCoverage',
+                item: 'Cover the modified catalog items and flows with ATF tests',
+                triggered: atfTests === 0 && metadata.artifacts.length > 0,
+            },
+            {
+                key: 'openUpdateSets',
+                item: 'Close or complete the update sets left open',
+                triggered: updateSets.some((s) => s.state === 'in progress'),
+            },
         ],
     }
 
@@ -75,7 +87,7 @@ export function buildAnalysis(userSysId: string, from: string, to: string, progr
     const peakDate = days.reduce((best, d) => (ctx.byDay[d] > (ctx.byDay[best] || 0) ? d : best), days[0] || '')
     const pq = ctx.pq
 
-    progress('Costruzione del grafo di relazione…')
+    progress('graph', 'Building the relationship graph')
     const result: KydAnalysisResult = {
         identity,
         conversations: {
@@ -122,14 +134,14 @@ export function buildAnalysis(userSysId: string, from: string, to: string, progr
         promptQuality: {
             base: pq.total,
             metrics: [
-                { key: 'ultraShort', label: 'Ultra-brevi (≤15 caratteri: "go", "yes")', count: pq.ultraShort },
-                { key: 'veryLong', label: 'Molto articolati (>1500 caratteri)', count: pq.veryLong },
-                { key: 'withImages', label: 'Con immagini / screenshot', count: pq.withImages },
-                { key: 'withUrl', label: "Con link a record dell'istanza", count: pq.withUrl },
-                { key: 'withTicket', label: 'Con riferimenti ticket (RITM/REQ/STRY)', count: pq.withTicket },
-                { key: 'withTech', label: 'Con nomi tecnici tabella / campo', count: pq.withTech },
-                { key: 'duplicates', label: 'Duplicati (stesso testo reinviato)', count: pq.duplicates },
-                { key: 'friction', label: 'Con segnali di attrito / frustrazione', count: pq.friction },
+                { key: 'ultraShort', label: 'Ultra-short (≤15 characters: "go", "yes")', count: pq.ultraShort },
+                { key: 'veryLong', label: 'Very detailed (>1500 characters)', count: pq.veryLong },
+                { key: 'withImages', label: 'With images / screenshots', count: pq.withImages },
+                { key: 'withUrl', label: 'With links to instance records', count: pq.withUrl },
+                { key: 'withTicket', label: 'With ticket references (RITM/REQ/STRY)', count: pq.withTicket },
+                { key: 'withTech', label: 'With technical table / field names', count: pq.withTech },
+                { key: 'duplicates', label: 'Duplicates (same text sent again)', count: pq.duplicates },
+                { key: 'friction', label: 'With friction / frustration signals', count: pq.friction },
             ],
         },
         metadata,

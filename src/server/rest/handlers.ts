@@ -13,7 +13,7 @@ function fail(response: any, status: number, message: string) {
 
 function authorized(response: any): boolean {
     if (gs.hasRole(KYD_USER_ROLE)) return true
-    fail(response, 403, `Serve il ruolo ${KYD_USER_ROLE}`)
+    fail(response, 403, `The ${KYD_USER_ROLE} role is required`)
     return false
 }
 
@@ -25,6 +25,12 @@ function analysesCountByDeveloper(): Record<string, number> {
     ga.query()
     while (ga.next()) out[ga.getValue('developer')] = parseInt(ga.getAggregate('COUNT'), 10)
     return out
+}
+
+// GET /session: lingua della sessione, per formattare date e numeri nella UI.
+export function getSession(request: any, response: any) {
+    if (!authorized(response)) return
+    response.setBody({ language: gs.getSession().getLanguage() || 'en' })
 }
 
 // GET /candidates: utenti con almeno una conversazione Build Agent.
@@ -81,7 +87,7 @@ export function listDevelopers(request: any, response: any) {
 export function listAnalyses(request: any, response: any) {
     if (!authorized(response)) return
     const developer = String(request.pathParams.developer || '')
-    if (!SYS_ID.test(developer)) return fail(response, 400, 'developer non valido')
+    if (!SYS_ID.test(developer)) return fail(response, 400, 'Invalid developer')
     const users = loadUsers([developer])
     const items = []
     const gr = new GlideRecord(ANALYSIS_TABLE)
@@ -97,7 +103,7 @@ export function getAnalysis(request: any, response: any) {
     if (!authorized(response)) return
     const id = String(request.pathParams.id || '')
     const gr = new GlideRecord(ANALYSIS_TABLE)
-    if (!SYS_ID.test(id) || !gr.get(id)) return fail(response, 404, 'Analisi non trovata')
+    if (!SYS_ID.test(id) || !gr.get(id)) return fail(response, 404, 'Analysis not found')
     const summary = toSummary(gr, loadUsers([gr.getValue('developer')]))
     const raw = gr.getValue('result')
     let result
@@ -117,10 +123,10 @@ export function createAnalysis(request: any, response: any) {
     const developer = String(body.developer || '')
     const from = String(body.from || '')
     const to = String(body.to || '')
-    if (!SYS_ID.test(developer)) return fail(response, 400, 'developer non valido')
-    if (!GLIDE_DATE.test(from) || !GLIDE_DATE.test(to) || from >= to) return fail(response, 400, 'periodo non valido')
+    if (!SYS_ID.test(developer)) return fail(response, 400, 'Invalid developer')
+    if (!GLIDE_DATE.test(from) || !GLIDE_DATE.test(to) || from >= to) return fail(response, 400, 'Invalid period')
     const users = loadUsers([developer])
-    if (!users[developer]) return fail(response, 404, 'Developer non trovato')
+    if (!users[developer]) return fail(response, 404, 'Developer not found')
 
     const pending = new GlideRecord(ANALYSIS_TABLE)
     pending.addQuery('developer', developer)
@@ -139,11 +145,12 @@ export function createAnalysis(request: any, response: any) {
     gr.setValue('developer', developer)
     gr.setValue('requested_by', gs.getUserID())
     gr.setValue('state', 'queued')
-    gr.setValue('status_message', 'In coda')
+    gr.setValue('status_message', 'Queued')
+    gr.setValue('stage', 'queued')
     gr.setValue('period_from', from)
     gr.setValue('period_to', to)
     const id = gr.insert()
-    if (!id) return fail(response, 500, "Impossibile creare l'analisi")
+    if (!id) return fail(response, 500, 'Unable to create the analysis')
     gr.get(id)
     response.setStatus(201)
     response.setBody({ summary: toSummary(gr, users), existing: false })

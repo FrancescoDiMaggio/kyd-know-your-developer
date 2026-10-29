@@ -1,12 +1,15 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { Avatar, Box, Button, EmptyState, HStack, Heading, IconButton, Skeleton, Stack, Table, Text } from '@chakra-ui/react'
 import { Eye, Plus, RefreshCw, Users } from 'lucide-react'
+import { t } from 'sn-translate'
+import { fill } from '../utils/i18n'
 import type { DeveloperRow } from '../types'
 import { kydService } from '../services/kyd-service'
 import { StateBadge } from '../components/StateBadge'
 import { Tip } from '../components/Tip'
 import { toaster } from '../components/toaster'
 import { fmtDateTime, fmtNumber, fmtPct } from '../utils/format'
+import { stageLabel } from '../utils/labels'
 import type { Route } from '../utils/navigation'
 
 const POLL_MS = 3000
@@ -22,7 +25,7 @@ export function DevelopersView({ navigate }: Props) {
         try {
             setRows(await kydService.listDevelopers())
         } catch (e) {
-            toaster.create({ type: 'error', title: 'Impossibile caricare i developer', description: String(e) })
+            toaster.create({ type: 'error', title: t('Unable to load the developers'), description: String(e) })
         }
     }, [])
 
@@ -34,13 +37,17 @@ export function DevelopersView({ navigate }: Props) {
     const busy = rows?.some((r) => r.latest.state === 'queued' || r.latest.state === 'running')
     useEffect(() => {
         if (!busy) return
-        const t = setInterval(() => void load(), POLL_MS)
-        return () => clearInterval(t)
+        const timer = setInterval(() => void load(), POLL_MS)
+        return () => clearInterval(timer)
     }, [busy, load])
 
     const refresh = async (row: DeveloperRow) => {
         await kydService.requestAnalysis(row.developer.sysId, { from: row.latest.periodFrom, to: row.latest.periodTo })
-        toaster.create({ type: 'info', title: `Analisi richiesta per ${row.developer.name}`, description: 'Può richiedere qualche minuto.' })
+        toaster.create({
+            type: 'info',
+            title: fill(t('Analysis requested for %1'), row.developer.name),
+            description: t('It can take a few minutes.'),
+        })
         void load()
     }
 
@@ -48,11 +55,11 @@ export function DevelopersView({ navigate }: Props) {
         <Stack gap="5">
             <HStack justify="space-between" align="end">
                 <Box>
-                    <Heading size="xl">Developer analizzati</Heading>
-                    <Text color="fg.muted">Ultima analisi KYD per ogni developer che ha lavorato con Build Agent.</Text>
+                    <Heading size="xl">{t('Analysed developers')}</Heading>
+                    <Text color="fg.muted">{t('Latest KYD analysis for every developer who worked with Build Agent.')}</Text>
                 </Box>
                 <Button colorPalette="brand" onClick={() => navigate({ view: 'new' })}>
-                    <Plus /> Nuova analisi
+                    <Plus /> {t('New analysis')}
                 </Button>
             </HStack>
 
@@ -64,10 +71,10 @@ export function DevelopersView({ navigate }: Props) {
                         <EmptyState.Indicator>
                             <Users />
                         </EmptyState.Indicator>
-                        <EmptyState.Title>Nessuna analisi ancora</EmptyState.Title>
-                        <EmptyState.Description>Avvia il wizard per analizzare il primo developer.</EmptyState.Description>
+                        <EmptyState.Title>{t('No analyses yet')}</EmptyState.Title>
+                        <EmptyState.Description>{t('Start the wizard to analyse the first developer.')}</EmptyState.Description>
                         <Button colorPalette="brand" onClick={() => navigate({ view: 'new' })}>
-                            <Plus /> Nuova analisi
+                            <Plus /> {t('New analysis')}
                         </Button>
                     </EmptyState.Content>
                 </EmptyState.Root>
@@ -78,14 +85,14 @@ export function DevelopersView({ navigate }: Props) {
                     <Table.Root size="md" interactive>
                         <Table.Header>
                             <Table.Row>
-                                <Table.ColumnHeader>Developer</Table.ColumnHeader>
-                                <Table.ColumnHeader>Ultima analisi</Table.ColumnHeader>
-                                <Table.ColumnHeader>Stato</Table.ColumnHeader>
-                                <Table.ColumnHeader textAlign="end">Conversazioni</Table.ColumnHeader>
-                                <Table.ColumnHeader textAlign="end">Prompt</Table.ColumnHeader>
-                                <Table.ColumnHeader textAlign="end">Artefatti</Table.ColumnHeader>
-                                <Table.ColumnHeader textAlign="end">Successo tool</Table.ColumnHeader>
-                                <Table.ColumnHeader textAlign="end">Azioni</Table.ColumnHeader>
+                                <Table.ColumnHeader>{t('Developer')}</Table.ColumnHeader>
+                                <Table.ColumnHeader>{t('Latest analysis')}</Table.ColumnHeader>
+                                <Table.ColumnHeader>{t('State')}</Table.ColumnHeader>
+                                <Table.ColumnHeader textAlign="end">{t('Conversations')}</Table.ColumnHeader>
+                                <Table.ColumnHeader textAlign="end">{t('Prompts')}</Table.ColumnHeader>
+                                <Table.ColumnHeader textAlign="end">{t('Artifacts')}</Table.ColumnHeader>
+                                <Table.ColumnHeader textAlign="end">{t('Tool success')}</Table.ColumnHeader>
+                                <Table.ColumnHeader textAlign="end">{t('Actions')}</Table.ColumnHeader>
                             </Table.Row>
                         </Table.Header>
                         <Table.Body>
@@ -109,29 +116,29 @@ export function DevelopersView({ navigate }: Props) {
                                             </HStack>
                                         </Table.Cell>
                                         <Table.Cell>
-                                            <Text>{latest.number}</Text>
+                                            <Text>{latest.number || '—'}</Text>
                                             <Text textStyle="xs" color="fg.muted">
                                                 {fmtDateTime(latest.completedOn || latest.requestedOn)}
-                                                {row.analysesCount > 1 && ` · ${row.analysesCount} analisi`}
+                                                {row.analysesCount > 1 && ` · ${fill(t('%1 analyses'), row.analysesCount)}`}
                                             </Text>
                                         </Table.Cell>
                                         <Table.Cell>
                                             <StateBadge state={latest.state} />
-                                            {busyRow && latest.statusMessage && (
+                                            {busyRow && (
                                                 <Text textStyle="xs" color="fg.muted" mt="1">
-                                                    {latest.statusMessage}
+                                                    {stageLabel(latest.stage)}
                                                 </Text>
                                             )}
                                         </Table.Cell>
                                         <Table.Cell textAlign="end">{fmtNumber(k?.conversations)}</Table.Cell>
                                         <Table.Cell textAlign="end">{fmtNumber(k?.prompts)}</Table.Cell>
                                         <Table.Cell textAlign="end">{fmtNumber(k?.functionalArtifacts)}</Table.Cell>
-                                        <Table.Cell textAlign="end">{k ? fmtPct(k.toolSuccessRate, 1) : 'n/d'}</Table.Cell>
+                                        <Table.Cell textAlign="end">{k ? fmtPct(k.toolSuccessRate, 1) : 'n/a'}</Table.Cell>
                                         <Table.Cell textAlign="end">
                                             <HStack gap="1" justify="end">
-                                                <Tip label="Apri l'analisi">
+                                                <Tip label={t('Open the analysis')}>
                                                     <IconButton
-                                                        aria-label={`Apri l'analisi di ${developer.name}`}
+                                                        aria-label={fill(t('Open the analysis of %1'), developer.name)}
                                                         variant="ghost"
                                                         size="sm"
                                                         onClick={() => navigate({ view: 'detail', developer: developer.sysId })}
@@ -139,9 +146,9 @@ export function DevelopersView({ navigate }: Props) {
                                                         <Eye />
                                                     </IconButton>
                                                 </Tip>
-                                                <Tip label={busyRow ? 'Analisi già in corso' : "Aggiorna l'analisi"}>
+                                                <Tip label={busyRow ? t('Analysis already running') : t('Refresh the analysis')}>
                                                     <IconButton
-                                                        aria-label={`Aggiorna l'analisi di ${developer.name}`}
+                                                        aria-label={fill(t('Refresh the analysis of %1'), developer.name)}
                                                         variant="ghost"
                                                         size="sm"
                                                         disabled={busyRow}

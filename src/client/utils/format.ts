@@ -1,4 +1,9 @@
-const LOCALE = 'it-IT'
+// Locale delle formattazioni: la lingua della sessione ServiceNow (vedi setLocale in app.tsx).
+let locale = navigator.language || 'en'
+
+export function setLocale(language?: string) {
+    if (language) locale = language.replace('_', '-')
+}
 
 // Le date arrivano dalla piattaforma in UTC nel formato "YYYY-MM-DD HH:mm:ss".
 export function parseGlideDate(value?: string): Date | null {
@@ -10,34 +15,34 @@ export function parseGlideDate(value?: string): Date | null {
 
 export function fmtDateTime(value?: string): string {
     const d = parseGlideDate(value)
-    return d ? d.toLocaleString(LOCALE, { dateStyle: 'short', timeStyle: 'short' }) : '—'
+    return d ? d.toLocaleString(locale, { dateStyle: 'short', timeStyle: 'short' }) : '—'
 }
 
 export function fmtDate(value?: string): string {
     const d = parseGlideDate(value)
-    return d ? d.toLocaleDateString(LOCALE, { day: '2-digit', month: 'short', year: 'numeric' }) : '—'
+    return d ? d.toLocaleDateString(locale, { day: '2-digit', month: 'short', year: 'numeric' }) : '—'
 }
 
 export function fmtDayShort(value: string): string {
     const d = parseGlideDate(value.length === 10 ? value + ' 00:00:00' : value)
-    return d ? d.toLocaleDateString(LOCALE, { day: '2-digit', month: '2-digit', timeZone: 'UTC' }) : value
+    return d ? d.toLocaleDateString(locale, { day: '2-digit', month: '2-digit', timeZone: 'UTC' }) : value
 }
 
 export function fmtNumber(n: number | null | undefined): string {
-    return n == null ? 'n/d' : n.toLocaleString(LOCALE)
+    return n == null ? 'n/a' : n.toLocaleString(locale)
 }
 
 export function fmtPct(part: number, total: number, digits = 1): string {
-    if (!total) return 'n/d'
-    return (part / total).toLocaleString(LOCALE, { style: 'percent', maximumFractionDigits: digits })
+    if (!total) return 'n/a'
+    return (part / total).toLocaleString(locale, { style: 'percent', maximumFractionDigits: digits })
+}
+
+export function fmtShare(value: number): string {
+    return (value / 100).toLocaleString(locale, { style: 'percent', maximumFractionDigits: 1 })
 }
 
 export function fmtHours(minutes: number): string {
-    return (minutes / 60).toLocaleString(LOCALE, { maximumFractionDigits: 1 }) + ' h'
-}
-
-export function nowGlide(): string {
-    return new Date().toISOString().slice(0, 19).replace('T', ' ')
+    return (minutes / 60).toLocaleString(locale, { maximumFractionDigits: 1 }) + ' h'
 }
 
 export function shortId(sysId: string): string {

@@ -4,6 +4,19 @@
 
 export type AnalysisState = 'queued' | 'running' | 'complete' | 'error'
 
+// Fase corrente del motore, tradotta dalla UI (status_message resta testo libero in inglese).
+export type AnalysisStage =
+    | 'queued'
+    | 'starting'
+    | 'conversations'
+    | 'messages'
+    | 'metadata'
+    | 'governance'
+    | 'graph'
+    | 'insights'
+    | 'complete'
+    | 'error'
+
 export interface DeveloperRef {
     sysId: string
     name: string
@@ -23,6 +36,7 @@ export interface AnalysisSummary {
     number: string
     developer: DeveloperRef
     state: AnalysisState
+    stage?: AnalysisStage
     statusMessage?: string
     requestedOn: string
     completedOn?: string
@@ -213,8 +227,10 @@ export interface GovernanceSection {
     install: { failed: number; total: number }
     build: { failed: number; total: number }
     frictionPrompts: number
-    checklist: { item: string; triggered: boolean }[]
+    checklist: { key: ChecklistKey; item: string; triggered: boolean }[]
 }
+
+export type ChecklistKey = 'anomalousUpdateSets' | 'scratchTables' | 'ootbChanges' | 'atfCoverage' | 'openUpdateSets'
 
 // 13. Prompt utente
 export interface PromptEntry {
@@ -255,6 +271,47 @@ export interface KydAnalysisResult {
     governance: GovernanceSection
     prompts: { conversation: string; items: PromptEntry[] }[]
     graph: { nodes: GraphNode[]; edges: GraphEdge[] }
+    insights?: KydInsights
+}
+
+// Lettura testuale prodotta dalle Skill Now Assist a fine analisi.
+export interface InsightPoint {
+    title: string
+    detail: string
+}
+
+export type StreamOutcome = 'done' | 'partial' | 'blocked' | 'advisory'
+export type Severity = 'high' | 'medium' | 'low' | 'monitor'
+
+export interface BehaviourInsight {
+    classification: string
+    summary: string
+    strengths: InsightPoint[]
+    concerns: InsightPoint[]
+}
+
+export interface DeliveryInsight {
+    streams: { title: string; period: string; scope: string; outcome: StreamOutcome; summary: string; artifacts: string[] }[]
+    outcomes: { goal: string; status: 'success' | 'partial' | 'failed'; detail: string }[]
+    failureCauses: InsightPoint[]
+}
+
+export interface RiskInsight {
+    classification: string
+    risks: { finding: string; severity: Severity; action: string }[]
+    maturity: { dimension: string; score: number; rationale: string }[]
+    recommendations: string[]
+}
+
+export type InsightSkill = 'behaviour' | 'delivery' | 'risk'
+
+export interface KydInsights {
+    generatedOn: string
+    language: string
+    behaviour?: BehaviourInsight
+    delivery?: DeliveryInsight
+    risk?: RiskInsight
+    errors: { skill: InsightSkill; message: string }[]
 }
 
 export interface KydAnalysis {

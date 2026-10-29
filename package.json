@@ -22,7 +22,8 @@
     "lucide-react": "1.57.0",
     "react": "19.3.1",
     "react-dom": "19.3.1",
-    "recharts": "3.10.1"
+    "recharts": "3.10.1",
+    "sn-translate": "19.1.0"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.28.0",

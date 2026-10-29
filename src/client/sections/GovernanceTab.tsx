@@ -1,10 +1,13 @@
 import React from 'react'
 import { List, Stack, Text } from '@chakra-ui/react'
 import { CircleAlert, CircleCheck } from 'lucide-react'
+import { t } from 'sn-translate'
+import { fill } from '../utils/i18n'
 import type { KydAnalysisResult } from '../types'
 import { SectionCard } from '../components/SectionCard'
 import { StatTiles } from '../components/StatTiles'
 import { fmtNumber, fmtPct } from '../utils/format'
+import { checklistLabel } from '../utils/labels'
 
 export function GovernanceTab({ r }: { r: KydAnalysisResult }) {
     const g = r.governance
@@ -14,49 +17,49 @@ export function GovernanceTab({ r }: { r: KydAnalysisResult }) {
                 columns={4}
                 items={[
                     {
-                        label: 'Script in background approvati',
+                        label: t('Approved background scripts'),
                         value: (g.backgroundScriptsEstimated ? '≈ ' : '') + fmtNumber(g.backgroundScripts),
                         help: g.backgroundScriptsEstimated
-                            ? 'stima dalle chiamate run_script: script request non leggibili dallo scope'
-                            : 'operatività fuori dal ciclo source/update set',
+                            ? t('estimated from run_script calls: script requests are not readable from the app scope')
+                            : t('operations outside the source and update set cycle'),
                         tone: (g.backgroundScripts || 0) > 50 ? 'warning' : 'default',
                     },
-                    { label: 'Test ATF creati', value: fmtNumber(g.atfTests), tone: g.atfTests === 0 ? 'critical' : 'good' },
+                    { label: t('ATF tests created'), value: fmtNumber(g.atfTests), tone: g.atfTests === 0 ? 'critical' : 'good' },
                     {
-                        label: 'Conversazioni in scope Global',
+                        label: t('Conversations in Global scope'),
                         value: `${g.globalConversations} / ${g.totalConversations}`,
                         tone: g.globalConversations ? 'warning' : 'default',
                     },
                     {
-                        label: 'Prompt con attrito dichiarato',
+                        label: t('Prompts with declared friction'),
                         value: fmtNumber(g.frictionPrompts),
-                        help: fmtPct(g.frictionPrompts, r.behaviour.prompts) + ' dei prompt',
+                        help: fill(t('%1 of the prompts'), fmtPct(g.frictionPrompts, r.behaviour.prompts)),
                     },
                     {
-                        label: 'Install fallite',
-                        value: `${g.install.failed} su ${g.install.total}`,
+                        label: t('Failed installs'),
+                        value: fill(t('%1 out of %2'), g.install.failed, g.install.total),
                         help: fmtPct(g.install.failed, g.install.total, 0),
-                        tone: g.install.failed >= g.install.total / 2 ? 'critical' : 'default',
+                        tone: g.install.total && g.install.failed >= g.install.total / 2 ? 'critical' : 'default',
                     },
                     {
-                        label: 'Build fallite',
-                        value: `${g.build.failed} su ${g.build.total}`,
+                        label: t('Failed builds'),
+                        value: fill(t('%1 out of %2'), g.build.failed, g.build.total),
                         help: fmtPct(g.build.failed, g.build.total, 0),
                         tone: g.build.failed ? 'warning' : 'good',
                     },
                 ]}
             />
-            <SectionCard title="Checklist di verifica suggerita" section={12}>
+            <SectionCard title={t('Suggested verification checklist')} section={12}>
                 <List.Root gap="3" variant="plain">
                     {g.checklist.map((c) => (
-                        <List.Item key={c.item} alignItems="center">
+                        <List.Item key={c.key || c.item} alignItems="center">
                             <List.Indicator asChild color={c.triggered ? 'orange.fg' : 'green.fg'}>
                                 {c.triggered ? <CircleAlert size={18} /> : <CircleCheck size={18} />}
                             </List.Indicator>
                             <Stack gap="0">
-                                <Text textStyle="sm">{c.item}</Text>
+                                <Text textStyle="sm">{checklistLabel(c.key) || c.item}</Text>
                                 <Text textStyle="xs" color={c.triggered ? 'orange.fg' : 'green.fg'}>
-                                    {c.triggered ? 'Condizione rilevata: da verificare' : 'Nessuna evidenza'}
+                                    {c.triggered ? t('Condition detected: to verify') : t('No evidence')}
                                 </Text>
                             </Stack>
                         </List.Item>

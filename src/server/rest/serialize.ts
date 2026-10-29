@@ -1,5 +1,5 @@
 import { GlideRecord } from '@servicenow/glide'
-import type { AnalysisState, AnalysisSummary, DeveloperRef } from '../../client/types'
+import type { AnalysisStage, AnalysisState, AnalysisSummary, DeveloperRef } from '../../client/types'
 
 // Risolve i riferimenti a sys_user con una sola query per gruppo di id.
 export function loadUsers(ids: string[]): Record<string, DeveloperRef> {
@@ -32,6 +32,7 @@ export function toSummary(gr: any, users: Record<string, DeveloperRef>): Analysi
         number: gr.getValue('number') || '',
         developer: users[devId] || { sysId: devId, name: gr.getDisplayValue('developer'), userName: '' },
         state,
+        stage: (gr.getValue('stage') as AnalysisStage) || undefined,
         statusMessage: gr.getValue('status_message') || undefined,
         requestedOn: gr.getValue('sys_created_on') || '',
         completedOn: gr.getValue('completed_on') || undefined,

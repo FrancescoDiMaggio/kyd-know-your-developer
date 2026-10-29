@@ -35,6 +35,9 @@ importers:
       recharts:
         specifier: 3.10.1
         version: 3.10.1(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react-is@16.13.1)(react@19.3.1)(redux@5.0.1)
+      sn-translate:
+        specifier: 19.1.0
+        version: 19.1.0
     devDependencies:
       '@babel/eslint-parser':
         specifier: ^7.28.0
@@ -4408,6 +4411,9 @@ packages:
     resolution: {integrity: sha512-02QRuo0uL+I6+VHY5LxYiKJMjbyrTJWFM6JWkWOcdLkfInjLvGdPQTjC+mUOt/0PzeNnRSCYNIDZfn6QRIQYug==}
     engines: {node: '>=0.10'}
 
+  sn-translate@19.1.0:
+    resolution: {integrity: sha512-0AfpaRgn5ebzALZOHiNhLUlOKotS0Vi7GglrBW3PVJ+d3fVSwHeSqeNcNnddbJ+JEyb7WUPZz0U7nlZnqQsiqw==}
+
   socks-proxy-agent@8.0.5:
     resolution: {integrity: sha512-HehCEsotFqbPW9sJ8WVYB6UbmIMv7kUUORIF2Nncq4VQvBfNBLibW9YZR5dlYCSUhwcD628pRllm7n+E+YTzJw==}
     engines: {node: '>= 14'}
@@ -4464,6 +4470,9 @@ packages:
 
   stream-shift@1.0.3:
     resolution: {integrity: sha512-76ORR0DO1o1hlKwTbi/DM3EXWGf3ZJYO8cXX5RJwnul2DEg2oyoZyjLNoQM8WsvZiFKCRfC1O0J7iCvie3RZmQ==}
+
+  string-template@1.0.0:
+    resolution: {integrity: sha512-SLqR3GBUXuoPP5MmYtD7ompvXiG87QjT6lzOszyXjTM86Uu7At7vNnt2xgyTLq5o9T4IxTYFyGxcULqpsmsfdg==}
 
   string-width@4.2.3:
     resolution: {integrity: sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==}
@@ -9791,6 +9800,10 @@ snapshots:
       nearley: 2.20.1
     optional: true
 
+  sn-translate@19.1.0:
+    dependencies:
+      string-template: 1.0.0
+
   socks-proxy-agent@8.0.5:
     dependencies:
       agent-base: 7.1.4
@@ -9842,6 +9855,8 @@ snapshots:
   statuses@2.0.2: {}
 
   stream-shift@1.0.3: {}
+
+  string-template@1.0.0: {}
 
   string-width@4.2.3:
     dependencies:

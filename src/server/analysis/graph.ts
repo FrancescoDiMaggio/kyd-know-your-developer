@@ -74,7 +74,7 @@ export function buildGraph(
 
     // Tabelle senza artefatto datato (scratch np$, dizionario): agganciate alla
     // conversazione che ha creato tabelle senza nome, altrimenti al developer.
-    const unnamed = metadata.artifacts.find((a) => a.cls === 'sys_db_object' && a.name === '(senza nome)')
+    const unnamed = metadata.artifacts.find((a) => a.cls === 'sys_db_object' && !a.name)
     tableNames.forEach((name) => {
         if (has('tbl:' + name)) return
         const id = tableNode(name)

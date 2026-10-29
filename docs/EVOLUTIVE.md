@@ -6,6 +6,8 @@ Backlog delle evoluzioni successive alla prima fase (analisi deterministica + UI
 
 **Obiettivo:** usare un LLM per trasformare i dati prodotti dagli script, tendenzialmente numerici, in valori testuali di comprensione.
 
+**Stato:** prima versione implementata con tre skill (Behaviour Profile, Delivery Outcomes, Risk and Maturity) in `src/fluent/now-assist-skills/`. Le invoca il motore a fine analisi e la UI le mostra nella scheda Report.
+
 Le Skill (Now Assist Skill Kit, `NowAssistSkillConfig`) vengono invocate in momenti specifici del motore di analisi. Ognuna riceve una sezione del `KydAnalysisResult` e restituisce testo strutturato, salvato nella stessa KYD Analysis.
 
 | Momento del processo | Input (sezione) | Output testuale atteso |

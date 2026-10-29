@@ -20,7 +20,7 @@ export const x_giss2_kyd_analysis = Table({
     display: 'number',
     audit: false,
     schema: {
-        number: StringColumn({ label: 'Number', default: 'javascript:getNextObjNumberPadded();', readOnly: true }),
+        number: StringColumn({ label: 'Number', default: 'javascript:global.getNextObjNumberPadded();', readOnly: true }),
         developer: ReferenceColumn({ label: 'Developer', referenceTable: 'sys_user', mandatory: true }),
         requested_by: ReferenceColumn({ label: 'Requested by', referenceTable: 'sys_user', default: 'javascript:gs.getUserID()' }),
         state: ChoiceColumn({
@@ -30,6 +30,23 @@ export const x_giss2_kyd_analysis = Table({
                 running: { label: 'Running', sequence: 20 },
                 complete: { label: 'Complete', sequence: 30 },
                 error: { label: 'Error', sequence: 40 },
+            },
+            default: 'queued',
+            dropdown: 'dropdown_without_none',
+        }),
+        stage: ChoiceColumn({
+            label: 'Stage',
+            choices: {
+                queued: { label: 'Queued', sequence: 10 },
+                starting: { label: 'Starting', sequence: 20 },
+                conversations: { label: 'Reading conversations', sequence: 30 },
+                messages: { label: 'Scanning messages', sequence: 40 },
+                metadata: { label: 'Metadata and update sets', sequence: 50 },
+                governance: { label: 'Governance indicators', sequence: 60 },
+                graph: { label: 'Relationship graph', sequence: 70 },
+                insights: { label: 'Now Assist insights', sequence: 80 },
+                complete: { label: 'Complete', sequence: 90 },
+                error: { label: 'Error', sequence: 100 },
             },
             default: 'queued',
             dropdown: 'dropdown_without_none',
@@ -64,6 +81,7 @@ Form({
                         { field: 'developer', type: 'table_field' },
                         { field: 'requested_by', type: 'table_field' },
                         { field: 'state', type: 'table_field' },
+                        { field: 'stage', type: 'table_field' },
                         { field: 'status_message', type: 'table_field' },
                     ],
                     rightElements: [
