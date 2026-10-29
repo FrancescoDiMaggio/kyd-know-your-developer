@@ -15,8 +15,10 @@ export function GovernanceTab({ r }: { r: KydAnalysisResult }) {
                 items={[
                     {
                         label: 'Script in background approvati',
-                        value: fmtNumber(g.backgroundScripts),
-                        help: 'operatività fuori dal ciclo source/update set',
+                        value: (g.backgroundScriptsEstimated ? '≈ ' : '') + fmtNumber(g.backgroundScripts),
+                        help: g.backgroundScriptsEstimated
+                            ? 'stima dalle chiamate run_script: script request non leggibili dallo scope'
+                            : 'operatività fuori dal ciclo source/update set',
                         tone: (g.backgroundScripts || 0) > 50 ? 'warning' : 'default',
                     },
                     { label: 'Test ATF creati', value: fmtNumber(g.atfTests), tone: g.atfTests === 0 ? 'critical' : 'good' },

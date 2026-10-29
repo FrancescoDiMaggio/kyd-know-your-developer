@@ -205,6 +205,8 @@ export interface UpdateSet {
 // 12. Governance e rischio
 export interface GovernanceSection {
     backgroundScripts: number | null
+    // true se stimato dalle chiamate run_script (script request non leggibili dallo scope)
+    backgroundScriptsEstimated?: boolean
     atfTests: number | null
     globalConversations: number
     totalConversations: number

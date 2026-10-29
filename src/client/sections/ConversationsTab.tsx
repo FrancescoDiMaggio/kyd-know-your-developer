@@ -94,7 +94,7 @@ export function ConversationsTab({ r }: { r: KydAnalysisResult }) {
                             <EmptyState.Indicator>
                                 <MessageSquareText />
                             </EmptyState.Indicator>
-                            <EmptyState.Description>I testi dei prompt non sono inclusi nel dataset dimostrativo.</EmptyState.Description>
+                            <EmptyState.Description>Nessun prompt nel periodo analizzato.</EmptyState.Description>
                         </EmptyState.Content>
                     </EmptyState.Root>
                 ) : (

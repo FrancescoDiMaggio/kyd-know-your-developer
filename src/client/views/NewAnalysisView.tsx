@@ -39,7 +39,7 @@ export function NewAnalysisView({ navigate }: { navigate: (r: Route) => void }) 
             const a = await kydService.requestAnalysis(candidate.developer.sysId, range)
             toaster.create({
                 type: 'success',
-                title: `Analisi ${a.number} avviata`,
+                title: a.state === 'running' ? `Analisi ${a.number} già in corso` : `Analisi ${a.number} in coda`,
                 description: `${candidate.developer.name}: può richiedere qualche minuto, segui lo stato dalla lista.`,
             })
             navigate({ view: 'list' })

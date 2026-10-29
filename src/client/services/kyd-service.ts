@@ -1,14 +1,13 @@
 import type { AnalysisSummary, DeveloperCandidate, DeveloperRow, KydAnalysis } from '../types'
-import { mockService } from './mock-service'
+import { restService } from './rest-service'
 
 export interface AnalysisPeriod {
     from: string
     to: string
 }
 
-// Punto unico di accesso ai dati: oggi il mock, domani la Scripted REST API.
+// Punto unico di accesso ai dati della UI.
 export interface KydService {
-    readonly isDemo: boolean
     listDevelopers(): Promise<DeveloperRow[]>
     listCandidates(): Promise<DeveloperCandidate[]>
     listAnalyses(developerSysId: string): Promise<AnalysisSummary[]>
@@ -16,4 +15,4 @@ export interface KydService {
     requestAnalysis(developerSysId: string, period: AnalysisPeriod): Promise<AnalysisSummary>
 }
 
-export const kydService: KydService = mockService
+export const kydService: KydService = restService

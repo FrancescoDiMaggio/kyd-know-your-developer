@@ -35,6 +35,7 @@
     "@servicenow/eslint-plugin-aiux-i18n": "latest",
     "@servicenow/eslint-plugin-aiux-ssr": "latest",
     "@servicenow/eslint-plugin-aiux-style": "latest",
+    "@servicenow/glide": "27.0.5",
     "@servicenow/isomorphic-rollup": "1.3.11",
     "@servicenow/sdk": "4.13.0",
     "@types/react": "19.3.0",
