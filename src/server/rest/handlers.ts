@@ -1,7 +1,7 @@
 import { GlideAggregate, GlideRecord, gs } from '@servicenow/glide'
 import type { DeveloperCandidate, DeveloperRow } from '../../client/types'
-import { ANALYSIS_TABLE, KYD_USER_ROLE } from '../analysis/config'
-import { loadUsers, toSummary } from './serialize'
+import { ANALYSIS_TABLE, KYD_USER_ROLE } from '../analysis/config.ts'
+import { loadUsers, toSummary } from './serialize.ts'
 
 const GLIDE_DATE = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/
 const SYS_ID = /^[0-9a-f]{32}$/

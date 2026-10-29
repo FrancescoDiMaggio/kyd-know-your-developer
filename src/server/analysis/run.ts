@@ -1,6 +1,6 @@
 import { GlideDateTime, GlideRecord, gs } from '@servicenow/glide'
-import { ANALYSIS_TABLE } from './config'
-import { buildAnalysis } from './engine'
+import { ANALYSIS_TABLE } from './config.ts'
+import { buildAnalysis } from './engine.ts'
 
 // Ciclo di vita di una KYD Analysis: queued -> running -> complete | error.
 export function runAnalysis(analysisSysId: string) {

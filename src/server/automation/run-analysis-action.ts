@@ -1,4 +1,4 @@
-import { runAnalysis } from '../analysis/run'
+import { runAnalysis } from '../analysis/run.ts'
 
 // Script Action sull'evento x_giss2_kyd.analysis.requested.
 // I nomi dei parametri diventano gli argomenti della chiamata generata: current, event.

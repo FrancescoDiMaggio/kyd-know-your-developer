@@ -1,11 +1,11 @@
 import { GlideRecord } from '@servicenow/glide'
 import type { AnalysisKpis, DeveloperRef, GovernanceSection, KydAnalysisResult, ToolStat } from '../../client/types'
-import { MAX_SCRIPT_FAILS } from './config'
-import { buildIdentity } from './identity'
-import { collectConversations, newScanContext, scanMessages } from './messages'
-import { buildMetadata, buildUpdateSets } from './metadata'
-import { buildGraph } from './graph'
-import { countRows, periodQuery, sortedPairs } from './util'
+import { MAX_SCRIPT_FAILS } from './config.ts'
+import { buildIdentity } from './identity.ts'
+import { collectConversations, newScanContext, scanMessages } from './messages.ts'
+import { buildMetadata, buildUpdateSets } from './metadata.ts'
+import { buildGraph } from './graph.ts'
+import { countRows, periodQuery, sortedPairs } from './util.ts'
 
 export interface EngineOutput {
     developer: DeveloperRef

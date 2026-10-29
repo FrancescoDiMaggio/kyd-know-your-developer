@@ -1,5 +1,5 @@
 import { gs } from '@servicenow/glide'
-import { ANALYSIS_REQUESTED_EVENT } from '../analysis/config'
+import { ANALYSIS_REQUESTED_EVENT } from '../analysis/config.ts'
 
 // Business rule (after insert): passa la nuova analisi al motore in background.
 export function queueAnalysis(current: any, previous: any) {

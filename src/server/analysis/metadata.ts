@@ -1,7 +1,7 @@
 import { GlideAggregate, GlideRecord } from '@servicenow/glide'
 import type { CreatedTable, MetadataSection, UpdateSet } from '../../client/types'
-import { ANOMALOUS_UPDATE_SET_SIZE, KEY_CLASSES, MAX_ARTIFACTS, NOISE_CLASSES } from './config'
-import { countBy, countRows, periodQuery, sortedPairs } from './util'
+import { ANOMALOUS_UPDATE_SET_SIZE, KEY_CLASSES, MAX_ARTIFACTS, NOISE_CLASSES } from './config.ts'
+import { countBy, countRows, periodQuery, sortedPairs } from './util.ts'
 
 // 10. Componenti / metadata creati dal developer nel periodo
 export function buildMetadata(userName: string, from: string, to: string): MetadataSection {

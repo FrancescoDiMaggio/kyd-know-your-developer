@@ -7,8 +7,8 @@ import {
     PROMPT_TRUNCATE,
     RESULT_TRUNCATE,
     SUBAGENT_TASK_TRUNCATE,
-} from './config'
-import { flat, inc, parseContent } from './util'
+} from './config.ts'
+import { flat, inc, parseContent } from './util.ts'
 
 const SENDERS: Sender[] = ['user', 'assistant', 'assistant-thinking', 'assistant-tool', 'sub-agent']
 
