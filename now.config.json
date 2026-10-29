@@ -1,5 +1,5 @@
 {
-  "scope": "x_snc_kyd_fdm",
+  "scope": "x_giss2_kyd",
   "scopeId": "d90f58d2aeb1446ca4f830b52fac5927",
   "name": "KYD - Know Your Developer",
   "metadataDir": "src/plugin-xmls",
@@ -11,5 +11,6 @@
         "publicPath": "[$config.aiux.basename]/public"
       }
     }
-  }
+  },
+  "tsconfigPath": "./src/server/tsconfig.json"
 }
