@@ -1,0 +1,15 @@
+{
+  "scope": "x_snc_kyd_fdm",
+  "scopeId": "d90f58d2aeb1446ca4f830b52fac5927",
+  "name": "KYD - Know Your Developer",
+  "metadataDir": "src/plugin-xmls",
+  "appOutputDir": "dist-metadata/app",
+  "packageSourceCodeOnInstance": true,
+  "staticContent": {
+    "assets": {
+      "./public/**": {
+        "publicPath": "[$config.aiux.basename]/public"
+      }
+    }
+  }
+}

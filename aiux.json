@@ -1,0 +1,11 @@
+{
+  "name": "KYD - Know Your Developer",
+  "basename": "kyd---know-your-developer",
+  "landing": "/home",
+  "development": {
+    "token": ""
+  },
+  "build": {
+    "exclude": ["**/*.test.js", "**/test/**"]
+  }
+}
