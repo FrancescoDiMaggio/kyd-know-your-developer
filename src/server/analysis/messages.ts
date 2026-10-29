@@ -2,6 +2,7 @@ import { GlideRecord } from '@servicenow/glide'
 import type { Conversation, PromptEntry, Sender, SubAgentDelegation, ToolOutcome } from '../../client/types'
 import {
     FRICTION_WORDS,
+    GOAL_TRUNCATE,
     INTENT_TRUNCATE,
     MAX_PROMPTS_PER_CONV,
     PROMPT_TRUNCATE,
@@ -73,6 +74,7 @@ export function collectConversations(userId: string, from: string, to: string): 
 }
 
 export interface ScanContext {
+    conversations?: Record<string, Conversation>
     messages: number
     senderTotals: Record<string, number>
     tools: Record<string, { ok: number; ko: number; ms: number }>
@@ -140,6 +142,7 @@ export function newScanContext(): ScanContext {
 // Scansione unica dei messaggi di tutte le conversazioni.
 export function scanMessages(ctx: ScanContext, conv: ConversationSet) {
     if (!conv.ids.length) return
+    ctx.conversations = conv.meta
     const seen: Record<string, boolean> = {}
     const m = new GlideRecord('sn_build_agent_message')
     m.addQuery('conversation', 'IN', conv.ids.join(','))
@@ -205,6 +208,9 @@ function scanUserMessage(ctx: ScanContext, cid: string, created: string, o: any,
         if (seen[key]) ctx.pq.duplicates++
         else seen[key] = true
     }
+
+    const conv = ctx.conversations?.[cid]
+    if (conv && !isHidden && !conv.goal && txt.trim()) conv.goal = flat(txt, GOAL_TRUNCATE)
 
     const list = (ctx.prompts[cid] ||= [])
     if (list.length < MAX_PROMPTS_PER_CONV && !isHidden) {

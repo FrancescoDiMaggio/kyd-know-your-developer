@@ -196,7 +196,7 @@ export function DeveloperView({ route, navigate }: Props) {
                         ))}
                     </Tabs.List>
                     <Tabs.Content value="overview">
-                        <OverviewTab r={r} />
+                        <OverviewTab r={r} summary={summary!} />
                     </Tabs.Content>
                     <Tabs.Content value="report">
                         <ReportTab r={r} />

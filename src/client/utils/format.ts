@@ -48,3 +48,23 @@ export function fmtHours(minutes: number): string {
 export function shortId(sysId: string): string {
     return sysId.slice(0, 6)
 }
+
+// Periodo [from, to) come intervallo leggibile, es. "1–29 Oct 2026" (to è esclusivo).
+export function fmtRange(from?: string, to?: string): string {
+    const start = parseGlideDate(from)
+    const endExclusive = parseGlideDate(to)
+    if (!start || !endExclusive) return '—'
+    const end = new Date(Math.max(start.getTime(), endExclusive.getTime() - 86400000))
+    const f = new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' })
+    return typeof (f as any).formatRange === 'function' ? (f as any).formatRange(start, end) : `${f.format(start)} – ${f.format(end)}`
+}
+
+// Nome del mese se il periodo sta in un solo mese, altrimenti null.
+export function monthOf(from?: string, to?: string): string | null {
+    const start = parseGlideDate(from)
+    const endExclusive = parseGlideDate(to)
+    if (!start || !endExclusive) return null
+    const end = new Date(endExclusive.getTime() - 86400000)
+    if (start.getUTCFullYear() !== end.getUTCFullYear() || start.getUTCMonth() !== end.getUTCMonth()) return null
+    return new Intl.DateTimeFormat(locale, { month: 'long', timeZone: 'UTC' }).format(start)
+}

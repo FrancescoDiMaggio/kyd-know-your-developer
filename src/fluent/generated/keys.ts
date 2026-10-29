@@ -264,6 +264,7 @@ declare global {
                     '%1 failures out of %2': {
                         table: 'sys_ui_message'
                         id: 'd45e747e644342efa0a3370247da2548'
+                        deleted: true
                     }
                     '%1 in total, showing the first %2': {
                         table: 'sys_ui_message'
@@ -276,6 +277,7 @@ declare global {
                     '%1 messages': {
                         table: 'sys_ui_message'
                         id: 'e4a3d0b5bb8e40239e3293111c85cafe'
+                        deleted: true
                     }
                     '%1 min': {
                         table: 'sys_ui_message'
@@ -333,6 +335,18 @@ declare global {
                         table: 'sys_ui_message'
                         id: '1fa4850d58724e649e3e590688514eef'
                     }
+                    '%1 prompts': {
+                        table: 'sys_ui_message'
+                        id: '400b194a119944be86e289e7e618945a'
+                    }
+                    '%1 prompts delivered %2 functional artifacts': {
+                        table: 'sys_ui_message'
+                        id: '570558ebd95b4561ab81f2762b48ae18'
+                    }
+                    '%1 prompts in %2 delivered %3 functional artifacts': {
+                        table: 'sys_ui_message'
+                        id: 'badfb2236fe04e84bc540192f4ff1db4'
+                    }
                     '%1 root conversations · %2 including sub-agents · %3 messages': {
                         table: 'sys_ui_message'
                         id: '596967f51c08406486dcc999029c91f5'
@@ -352,6 +366,7 @@ declare global {
                     '%1 sys_metadata records': {
                         table: 'sys_ui_message'
                         id: '192f09fd922b499c962783c47fcf3733'
+                        deleted: true
                     }
                     '%1 update sets · %2 still in progress': {
                         table: 'sys_ui_message'
@@ -402,9 +417,14 @@ declare global {
                         table: 'sys_ui_message'
                         id: '6b84fc69868d417bb5635ab263c4bf5e'
                     }
+                    'active days': {
+                        table: 'sys_ui_message'
+                        id: '0e7b8d8dc03a40168daf091d5b13b15f'
+                    }
                     'Active days': {
                         table: 'sys_ui_message'
                         id: '77cad9ee101b49b286ee41169aa44e2c'
+                        deleted: true
                     }
                     'Advisory only': {
                         table: 'sys_ui_message'
@@ -414,9 +434,14 @@ declare global {
                         table: 'sys_ui_message'
                         id: '8071981db4d740d4a58524cef4a79e9d'
                     }
+                    'agent time': {
+                        table: 'sys_ui_message'
+                        id: '30761f0062ef4f6e9af436b9f8ea4ec6'
+                    }
                     'Agent time': {
                         table: 'sys_ui_message'
                         id: 'a310763b43c24a5db007e6fc2098ff2f'
+                        deleted: true
                     }
                     'All classes': {
                         table: 'sys_ui_message'
@@ -518,6 +543,10 @@ declare global {
                         table: 'sys_ui_message'
                         id: '7cd9e80c22794a2abf71a2aaa7bf6952'
                     }
+                    'background scripts': {
+                        table: 'sys_ui_message'
+                        id: 'd3f6e34df2e144f8809af85ea84690f4'
+                    }
                     Behaviour: {
                         table: 'sys_ui_message'
                         id: '05d1de2fd28b4953a13e3b1b594d1073'
@@ -537,6 +566,10 @@ declare global {
                     'Build Agent conversations': {
                         table: 'sys_ui_message'
                         id: '5af1e7a47cac457d92c6614433da0e8a'
+                    }
+                    'Build Agent via %1 in %2 of %3 conversations': {
+                        table: 'sys_ui_message'
+                        id: '2787d5d2028444a4b0819aa1a840165f'
                     }
                     'Building the relationship graph': {
                         table: 'sys_ui_message'
@@ -610,6 +643,10 @@ declare global {
                         table: 'sys_ui_message'
                         id: 'f22876f3cbdb4d8ca9c4326ae57fdb08'
                     }
+                    conversations: {
+                        table: 'sys_ui_message'
+                        id: 'aab41854ec9a45dcac63ad71978bfb09'
+                    }
                     Conversations: {
                         table: 'sys_ui_message'
                         id: 'e0a9a64b6f9e44309f2b40942177e8c3'
@@ -675,6 +712,10 @@ declare global {
                     Developer: {
                         table: 'sys_ui_message'
                         id: 'c6122264999d46d2b1a734ef40a39741'
+                    }
+                    'Developer card: %1': {
+                        table: 'sys_ui_message'
+                        id: '44b83b64ea9e4c11a501e27d3e22c5cb'
                     }
                     'Developer identity': {
                         table: 'sys_ui_message'
@@ -804,6 +845,7 @@ declare global {
                     'Functional artifacts': {
                         table: 'sys_ui_message'
                         id: 'aee03f4530dc4fbf8737ec7013a8f6f6'
+                        deleted: true
                     }
                     'Functional artifacts by name': {
                         table: 'sys_ui_message'
@@ -930,6 +972,10 @@ declare global {
                         table: 'sys_generative_ai_config'
                         id: 'f4901f0f917e4fb8befdeac7ff9c87bf'
                     }
+                    kyd_behaviour_profile_prompt_v2: {
+                        table: 'sys_generative_ai_config'
+                        id: '48f3752bf94c4c25acaec9230a72b773'
+                    }
                     kyd_behaviour_profile_skill: {
                         table: 'sys_one_extend_capability'
                         id: '1b3cddb8b5a24a2fba8c3e5210cc80a2'
@@ -970,6 +1016,10 @@ declare global {
                         table: 'sys_generative_ai_config'
                         id: 'c86ef6663aca41ecb0dce95ca298d6ad'
                     }
+                    kyd_delivery_outcomes_prompt_v2: {
+                        table: 'sys_generative_ai_config'
+                        id: 'ff931980d42049d09a7fb3225935aae0'
+                    }
                     kyd_delivery_outcomes_skill: {
                         table: 'sys_one_extend_capability'
                         id: '3fbbff97a91d42198cacedf9b55bdc1f'
@@ -1009,6 +1059,10 @@ declare global {
                     kyd_risk_maturity_prompt_v1: {
                         table: 'sys_generative_ai_config'
                         id: '6ef000086e7f4aeb919ab05607e26cd1'
+                    }
+                    kyd_risk_maturity_prompt_v2: {
+                        table: 'sys_generative_ai_config'
+                        id: 'f3c9d14badb44deaa61f20015bbe8e75'
                     }
                     kyd_risk_maturity_skill: {
                         table: 'sys_one_extend_capability'
@@ -1350,6 +1404,7 @@ declare global {
                     'peak %1 (%2)': {
                         table: 'sys_ui_message'
                         id: '3fd4591275de4ec9b817a851c3913056'
+                        deleted: true
                     }
                     Period: {
                         table: 'sys_ui_message'
@@ -1534,6 +1589,10 @@ declare global {
                         table: 'sys_ui_message'
                         id: 'afeb57f301c24cbd904a90c08fe3d153'
                     }
+                    'Source: KYD analysis of Build Agent conversations, messages, metadata and update sets, %1. %2 functional artifacts out of %3 metadata records; the rest is technical noise (plugins, documentation, snapshots, dictionary). ATF = Automated Test Framework.': {
+                        table: 'sys_ui_message'
+                        id: '882eeafc199d4dc091d9f9257072cb95'
+                    }
                     src_server_analysis_config_ts: {
                         table: 'sys_module'
                         id: '5154f7b4122348c7872308fca9150e19'
@@ -1684,6 +1743,10 @@ declare global {
                         table: 'sys_ui_message'
                         id: 'bda63a6adcc8440d908d0d20bd49fa41'
                     }
+                    'The work streams appear here when the Now Assist insights are available for this analysis.': {
+                        table: 'sys_ui_message'
+                        id: '08033ba4ba3349eca6ed56dd5a81b18f'
+                    }
                     Thinking: {
                         table: 'sys_ui_message'
                         id: '4b0cfc847345419591ec24d13cf95a50'
@@ -1691,6 +1754,7 @@ declare global {
                     'thinking + tools + responses': {
                         table: 'sys_ui_message'
                         id: 'bde5957fad664c118dbaf716601776aa'
+                        deleted: true
                     }
                     'Three Now Assist skills (Behaviour Profile, Delivery Outcomes, Risk and Maturity) turn the computed data into a written reading, in the language of the person who requested the analysis. If a skill fails the analysis stays valid, without that part.': {
                         table: 'sys_ui_message'
@@ -1802,6 +1866,10 @@ declare global {
                         table: 'sys_ui_message'
                         id: 'd49bb6c5635b44f0bec214e08fb6a901'
                     }
+                    'user prompts': {
+                        table: 'sys_ui_message'
+                        id: '55551b752b1e4a2c84798e41f4282fe7'
+                    }
                     'User prompts': {
                         table: 'sys_ui_message'
                         id: 'dfae0a1ac5074e99afaa92d200e245ac'
@@ -1849,6 +1917,10 @@ declare global {
                     'Work streams': {
                         table: 'sys_ui_message'
                         id: '023e14f6287549be812cdf1a15707aee'
+                    }
+                    'Work streams generated by Now Assist.': {
+                        table: 'sys_ui_message'
+                        id: '92a00a9899214bcdb0cfef6acbc276a1'
                     }
                     'x-giss2-kyd-analysis-requested-event': {
                         table: 'sysevent_register'
@@ -2235,6 +2307,13 @@ declare global {
                             }
                             element: 'period_to'
                             position: '9'
+                        }
+                    },
+                    {
+                        table: 'sys_generative_ai_prompt_config'
+                        id: '2df8fb542c1840bdaad8dd25a4129da6'
+                        key: {
+                            ai_config: 'f3c9d14badb44deaa61f20015bbe8e75'
                         }
                     },
                     {
@@ -2973,6 +3052,13 @@ declare global {
                         id: '7603bca4e1a549a1a0a032d4e2859ca8'
                         key: {
                             name: 'x_giss2_kyd/vendor-cytoscape--68a9e77b'
+                        }
+                    },
+                    {
+                        table: 'sys_generative_ai_prompt_config'
+                        id: '78ff1287a4d6479887ca042039667c85'
+                        key: {
+                            ai_config: 'ff931980d42049d09a7fb3225935aae0'
                         }
                     },
                     {
@@ -3767,6 +3853,13 @@ declare global {
                             name: 'x_giss2_kyd_analysis'
                             element: 'completed_on'
                             language: 'en'
+                        }
+                    },
+                    {
+                        table: 'sys_generative_ai_prompt_config'
+                        id: 'e71e59a88e1e4f48a4ea46330a6d6484'
+                        key: {
+                            ai_config: '48f3752bf94c4c25acaec9230a72b773'
                         }
                     },
                     {

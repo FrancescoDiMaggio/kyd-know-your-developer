@@ -92,6 +92,8 @@ export interface Conversation {
     scopeId: string
     messages: number
     senders: Record<Sender, number>
+    // Primo prompt della conversazione (fino a 600 caratteri): l'obiettivo reale, il titolo può essere generico.
+    goal?: string
 }
 
 export interface ConversationsSection {
@@ -291,7 +293,20 @@ export interface BehaviourInsight {
 }
 
 export interface DeliveryInsight {
-    streams: { title: string; period: string; scope: string; outcome: StreamOutcome; summary: string; artifacts: string[] }[]
+    // v2: etichetta breve del ruolo (es. "Acme platform engineer")
+    developerRole?: string
+    streams: {
+        title: string
+        period: string
+        scope: string
+        outcome: StreamOutcome
+        summary: string
+        artifacts: string[]
+        // v2: prompt degli stream, componenti in una frase, esito in poche parole
+        prompts?: number
+        components?: string
+        result?: string
+    }[]
     outcomes: { goal: string; status: 'success' | 'partial' | 'failed'; detail: string }[]
     failureCauses: InsightPoint[]
 }

@@ -115,8 +115,13 @@ export function InsightsReport({ insights }: { insights: KydInsights }) {
                                         </Badge>
                                     </HStack>
                                     <Text textStyle="xs" color="fg.muted" mt="1">
-                                        {[s.period, s.scope].filter(Boolean).join(' · ')}
+                                        {[s.period, s.scope, s.prompts != null ? fill(t('%1 prompts'), s.prompts) : ''].filter(Boolean).join(' · ')}
                                     </Text>
+                                    {s.result && (
+                                        <Text textStyle="sm" fontWeight="semibold" mt="1">
+                                            {s.result}
+                                        </Text>
+                                    )}
                                     <Text textStyle="sm" mt="2">
                                         {s.summary}
                                     </Text>

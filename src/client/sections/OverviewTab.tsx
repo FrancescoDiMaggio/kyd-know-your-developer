@@ -3,43 +3,20 @@ import { Badge, DataList, Grid, List, Stack, Text, Wrap } from '@chakra-ui/react
 import { CircleAlert, CircleCheck } from 'lucide-react'
 import { t } from 'sn-translate'
 import { fill } from '../utils/i18n'
-import type { KydAnalysisResult } from '../types'
+import type { AnalysisSummary, KydAnalysisResult } from '../types'
 import { SectionCard } from '../components/SectionCard'
-import { StatTiles } from '../components/StatTiles'
+import { DeveloperCard } from '../components/DeveloperCard'
 import { ColumnChart } from '../components/charts/ColumnChart'
-import { fmtDateTime, fmtDayShort, fmtHours, fmtNumber, fmtPct } from '../utils/format'
+import { fmtDateTime, fmtDayShort } from '../utils/format'
 import { checklistLabel } from '../utils/labels'
 
-export function OverviewTab({ r }: { r: KydAnalysisResult }) {
+export function OverviewTab({ r, summary }: { r: KydAnalysisResult; summary: AnalysisSummary }) {
     const b = r.behaviour
     const g = r.governance
     const id = r.identity
     return (
         <Stack gap="4">
-            <StatTiles
-                columns={6}
-                items={[
-                    { label: t('Conversations'), value: fmtNumber(r.conversations.rootCount), help: fill(t('%1 messages'), fmtNumber(r.conversations.messages)) },
-                    { label: t('Real prompts'), value: fmtNumber(b.prompts), help: fill(t('+%1 system markers'), b.systemMarkers) },
-                    {
-                        label: t('Active days'),
-                        value: fmtNumber(b.activeDays),
-                        help: b.peak.date ? fill(t('peak %1 (%2)'), fmtDayShort(b.peak.date), b.peak.prompts) : undefined,
-                    },
-                    { label: t('Agent time'), value: fmtHours(b.agentMinutes.total), help: t('thinking + tools + responses') },
-                    {
-                        label: t('Tool success'),
-                        value: fmtPct(r.tools.ok, r.tools.calls),
-                        help: fill(t('%1 failures out of %2'), fmtNumber(r.tools.ko), fmtNumber(r.tools.calls)),
-                        tone: r.tools.calls && r.tools.ok / r.tools.calls < 0.9 ? 'warning' : 'default',
-                    },
-                    {
-                        label: t('Functional artifacts'),
-                        value: fmtNumber(r.metadata.artifacts.length),
-                        help: fill(t('%1 sys_metadata records'), fmtNumber(r.metadata.total)),
-                    },
-                ]}
-            />
+            <DeveloperCard r={r} summary={summary} />
             <Grid templateColumns={{ base: '1fr', lg: '2fr 1fr' }} gap="4">
                 <SectionCard title={t('Prompts per day')} section={8} description={fill(t('%1 active days'), b.activeDays)}>
                     <ColumnChart data={b.byDay} xKey="date" yKey="prompts" yLabel={t('Prompts')} xFormatter={fmtDayShort} />

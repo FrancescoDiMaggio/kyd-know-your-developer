@@ -33,21 +33,32 @@ export function requesterLanguage(userSysId: string): { code: string; name: stri
 
 const share = (count: number, base: number) => (base ? Math.round((count / base) * 1000) / 10 : 0)
 
-function behaviourData(r: KydAnalysisResult) {
+// Cronologia dei prompt per conversazione (testi troncati a 160 caratteri dal motore).
+function promptHistory(r: KydAnalysisResult) {
     const titles: Record<string, string> = {}
     r.conversations.items.forEach((c) => (titles[c.sysId] = c.title))
+    return r.prompts.map((p) => ({
+        conversation: p.conversation.substring(0, 6),
+        title: titles[p.conversation] || '',
+        items: p.items.map((i) => ({ at: i.createdOn, tags: i.tags, text: i.text, length: i.length })),
+    }))
+}
+
+function behaviourData(r: KydAnalysisResult) {
     return {
         behaviour: r.behaviour,
         promptQuality: r.promptQuality,
-        prompts: r.prompts.map((p) => ({
-            conversation: titles[p.conversation] || p.conversation,
-            items: p.items.map((i) => ({ at: i.createdOn, tags: i.tags, text: i.text, length: i.length })),
-        })),
+        prompts: promptHistory(r),
     }
 }
 
-function deliveryData(r: KydAnalysisResult) {
+function deliveryData(r: KydAnalysisResult, email: string) {
     return {
+        organisation: {
+            company: r.identity.company,
+            emailDomain: email.includes('@') ? email.split('@')[1] : '',
+            groups: r.identity.groups,
+        },
         conversations: r.conversations.items.map((c) => ({
             id: c.sysId.substring(0, 6),
             title: c.title,
@@ -58,7 +69,9 @@ function deliveryData(r: KydAnalysisResult) {
             app: c.appName,
             prompts: c.senders.user,
             toolCalls: c.senders['assistant-tool'],
+            goal: c.goal || '',
         })),
+        prompts: promptHistory(r),
         tools: r.tools,
         buildInstall: r.buildInstall,
         scriptIntents: r.scriptIntents.items.map((i) => ({ conversation: i.conversation.substring(0, 6), ok: i.ok, intent: i.intent })),
@@ -90,6 +103,8 @@ function riskData(r: KydAnalysisResult, insights: KydInsights) {
             platformTableDictionaryChanges: r.metadata.dictionaryByTable.filter((d) => !/^(u_|x_)/.test(d.table)),
             promptQualitySharesPct: Object.fromEntries(pq.metrics.map((m) => [m.key, share(m.count, pq.base)])),
         },
+        conversations: r.conversations.items.map((c) => ({ id: c.sysId.substring(0, 6), title: c.title, scope: c.scopeId, goal: c.goal || '' })),
+        prompts: promptHistory(r),
         behaviourProfile: insights.behaviour || null,
         deliveryOutcomes: insights.delivery || null,
     }
@@ -97,7 +112,7 @@ function riskData(r: KydAnalysisResult, insights: KydInsights) {
 
 // Interpretazione testuale dei dati con le Skill Now Assist. Un errore di una skill
 // non invalida l'analisi: viene registrato in insights.errors.
-export function buildInsights(r: KydAnalysisResult, language: { code: string; name: string }): KydInsights {
+export function buildInsights(r: KydAnalysisResult, language: { code: string; name: string }, developerEmail = ''): KydInsights {
     const insights: KydInsights = { generatedOn: new GlideDateTime().getValue(), language: language.code, errors: [] }
     const attempt = (skill: InsightSkill, data: unknown) => {
         try {
@@ -110,7 +125,7 @@ export function buildInsights(r: KydAnalysisResult, language: { code: string; na
     }
     if (!r.conversations.rootCount) return insights
     insights.behaviour = attempt('behaviour', behaviourData(r))
-    insights.delivery = attempt('delivery', deliveryData(r))
+    insights.delivery = attempt('delivery', deliveryData(r, developerEmail))
     insights.risk = attempt('risk', riskData(r, insights))
     return insights
 }

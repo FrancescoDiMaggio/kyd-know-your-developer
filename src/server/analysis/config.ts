@@ -5,6 +5,7 @@ export const ANALYSIS_REQUESTED_EVENT = 'x_giss2_kyd.analysis.requested'
 export const KYD_USER_ROLE = 'x_giss2_kyd.user'
 
 export const PROMPT_TRUNCATE = 160
+export const GOAL_TRUNCATE = 600
 export const MAX_PROMPTS_PER_CONV = 400
 export const RESULT_TRUNCATE = 220
 export const INTENT_TRUNCATE = 140

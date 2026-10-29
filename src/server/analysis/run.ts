@@ -26,7 +26,7 @@ export function runAnalysis(analysisSysId: string) {
     try {
         const out = buildAnalysis(gr.getValue('developer'), gr.getValue('period_from'), gr.getValue('period_to'), progress)
         progress('insights', 'Generating Now Assist insights')
-        out.result.insights = buildInsights(out.result, requesterLanguage(gr.getValue('requested_by')))
+        out.result.insights = buildInsights(out.result, requesterLanguage(gr.getValue('requested_by')), out.developer.email)
         gr.setValue('result', JSON.stringify(out.result))
         gr.setValue('conversations', out.kpis.conversations)
         gr.setValue('prompts', out.kpis.prompts)
